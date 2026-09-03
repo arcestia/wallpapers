@@ -2,7 +2,7 @@
 
 A hand-picked collection of **2K+ resolution** wallpapers organized across 25 clean categories for desktop, ultrawide, and mobile displays.
 
-🌐 **[Live Wallpaper Gallery (GitHub Pages)](https://arcestia.github.io/wallpapers/)** · ☁️ Hosted on **Backblaze B2** · ⚡ CDN by **[skiddle.id](https://skiddle.id)**
+🌐 **[Live Wallpaper Gallery](https://wallpapers.skiddle.id)** · ☁️ Hosted on **Backblaze B2** · ⚡ CDN by **[skiddle.id](https://skiddle.id)**
 
 ---
 
