@@ -979,7 +979,7 @@ def export_gallery_json() -> int:
         cursor.execute(
             """
             SELECT id, category, width, height, format, filesize,
-                   aspect_ratio, orientation, s3_url, curated_filename, source
+                   aspect_ratio, orientation, s3_url, s3_thumb_url, curated_filename, source
             FROM wallpapers
             WHERE is_curated = 1 AND s3_url IS NOT NULL AND s3_url != ''
             ORDER BY category ASC, curated_id ASC
@@ -989,12 +989,13 @@ def export_gallery_json() -> int:
 
     wallpapers = []
     for r in rows:
+        thumb = r["s3_thumb_url"] or r["s3_url"]
         w = {
             "id": r["id"],
             "category": r["category"],
             "filename": r["curated_filename"],
             "cdn_url": r["s3_url"],
-            "thumbnail_url": r["s3_url"],
+            "thumbnail_url": thumb,
             "download_url": r["s3_url"],
             "width": r["width"],
             "height": r["height"],
@@ -2263,7 +2264,7 @@ def handle_git_push(data: dict) -> dict:
 def run_cdn_publish_task(tm, force_all: bool = False) -> dict:
     """Background task: upload unsynced curated wallpapers to B2/S3, regen READMEs, push metadata to git."""
     from curate_config import GIT_BRANCH, GIT_CONFIRM_TOKEN, GIT_MAX_PUSH_MIN, GIT_REMOTE
-    from curate_s3 import is_s3_configured, sync_curated_collection
+    from curate_s3 import is_s3_configured, sync_curated_collection, sync_thumbnails
 
     tm.log("☁️ Publish to CDN: starting...")
 
@@ -2288,12 +2289,12 @@ def run_cdn_publish_task(tm, force_all: bool = False) -> dict:
             tm.log(f"⏳ Rate limited: last push {elapsed_min:.1f}m ago (min {GIT_MAX_PUSH_MIN}m)")
             return {"success": False, "error": f"Rate limit: {elapsed_min:.1f}m since last push"}
 
-    # 1. Sync to B2/S3 (skip gracefully when not configured)
+    # 1. Sync full-res to B2/S3 & generate thumbnails (skip gracefully when not configured)
     sync_result = {}
     if is_s3_configured():
         def _progress(done, total, msg):
             tm.set_progress(done, total, current_name=msg)
-        tm.log("📤 Uploading unsynced curated wallpapers to B2/S3...")
+        tm.log("📤 Uploading unsynced curated wallpapers & thumbnails to B2/S3...")
         try:
             sync_result = sync_curated_collection(
                 force_all=force_all,
@@ -2306,6 +2307,15 @@ def run_cdn_publish_task(tm, force_all: bool = False) -> dict:
                 f"{sync_result.get('failed', 0)} failed, "
                 f"{round(sync_result.get('total_bytes', 0) / (1024 * 1024), 1)} MB"
             )
+            # Sync any missing thumbnails
+            thumb_res = sync_thumbnails(
+                force_all=force_all,
+                progress_callback=_progress,
+                curated_dir=CURATED_DIR,
+                db_path=DB_PATH,
+            )
+            if thumb_res.get("uploaded", 0) > 0:
+                tm.log(f"🖼️ Thumbnails synced: {thumb_res['uploaded']} new WebP thumbs uploaded")
             for err in sync_result.get("errors", [])[:10]:
                 tm.log(f"   ⚠️ {err}")
         except Exception as e:

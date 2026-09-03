@@ -16,6 +16,9 @@ import boto3
 from botocore.config import Config
 from botocore.exceptions import BotoCoreError, ClientError
 
+from io import BytesIO
+from PIL import Image
+
 from curate_config import (
     CDN_BASE,
     CURATED_DIR,
@@ -31,6 +34,7 @@ from curate_db import (
     db_session,
     get_unsynced_curated_wallpapers,
     update_wallpaper_s3,
+    update_wallpaper_s3_thumb,
 )
 
 logger = logging.getLogger("curate.s3")
@@ -82,6 +86,13 @@ def generate_s3_key(category: str, filename: str) -> str:
     clean_cat = category.strip("/\\ ")
     clean_fn = filename.strip("/\\ ")
     return f"images/wallpapers/{clean_cat}/{clean_fn}"
+
+
+def generate_s3_thumb_key(category: str, filename: str) -> str:
+    """Generate S3 object key for a thumbnail (images/thumbs/<Category>/<stem>.webp)."""
+    clean_cat = category.strip("/\\ ")
+    stem = Path(filename.strip("/\\ ")).stem
+    return f"images/thumbs/{clean_cat}/{stem}.webp"
 
 
 def generate_cdn_url(s3_key: str) -> str:
@@ -161,6 +172,66 @@ def verify_remote_file(
         return False, None
 
 
+def create_optimized_thumbnail(local_path: Path, max_dim: int = 640, quality: int = 80) -> bytes:
+    """Create an optimized WebP thumbnail in-memory for fast grid rendering."""
+    with Image.open(local_path) as im:
+        im.draft("RGB", (max_dim, max_dim))
+        if im.mode != "RGB":
+            im = im.convert("RGB")
+        im.thumbnail((max_dim, max_dim), Image.LANCZOS)
+        buf = BytesIO()
+        im.save(buf, format="WEBP", quality=quality, method=6)
+        return buf.getvalue()
+
+
+def upload_bytes(
+    data: bytes,
+    s3_key: str,
+    content_type: str = "image/webp",
+    bucket: Optional[str] = None,
+    client=None,
+) -> Tuple[bool, str, Optional[str]]:
+    """Upload raw bytes to S3/B2 with public cache headers.
+
+    Returns: (success: bool, cdn_url: str, error_message: Optional[str])
+    """
+    target_bucket = bucket or S3_BUCKET
+    s3 = client or get_s3_client()
+    cdn_url = generate_cdn_url(s3_key)
+    extra_args = {
+        "ContentType": content_type,
+        "CacheControl": "public, max-age=31536000, immutable",
+    }
+    try:
+        s3.upload_fileobj(BytesIO(data), target_bucket, s3_key, ExtraArgs=extra_args)
+        return True, cdn_url, None
+    except Exception as e:
+        logger.error(f"Failed to upload bytes to {s3_key}: {e}")
+        return False, "", str(e)
+
+
+def upload_thumbnail(
+    local_path: Path,
+    category: str,
+    filename: str,
+    bucket: Optional[str] = None,
+    client=None,
+) -> Tuple[bool, str, Optional[str]]:
+    """Generate and upload a WebP thumbnail for a wallpaper.
+
+    Returns: (success: bool, thumb_cdn_url: str, error_message: Optional[str])
+    """
+    local_path = Path(local_path)
+    if not local_path.is_file():
+        return False, "", f"Local file not found: {local_path}"
+    try:
+        thumb_bytes = create_optimized_thumbnail(local_path)
+    except Exception as e:
+        return False, "", f"Thumbnail generation failed: {e}"
+    thumb_key = generate_s3_thumb_key(category, filename)
+    return upload_bytes(thumb_bytes, thumb_key, bucket=bucket, client=client)
+
+
 def _upload_single_task(item: Dict[str, Any], curated_dir: Path, s3_bucket: str) -> Dict[str, Any]:
     """Worker task to upload one wallpaper and update database."""
     w_id = item["id"]
@@ -191,14 +262,21 @@ def _upload_single_task(item: Dict[str, Any], curated_dir: Path, s3_bucket: str)
     if not success:
         return {"id": w_id, "success": False, "error": err, "bytes": 0}
 
+    # Generate and upload WebP thumbnail
+    thumb_success, thumb_url, thumb_err = upload_thumbnail(
+        local_path, category, curated_fn, bucket=s3_bucket
+    )
+    final_thumb_url = thumb_url if thumb_success else cdn_url
+
     # Update database record
-    update_wallpaper_s3(w_id, s3_key, cdn_url)
+    update_wallpaper_s3(w_id, s3_key, cdn_url, s3_thumb_url=final_thumb_url)
 
     return {
         "id": w_id,
         "success": True,
         "s3_key": s3_key,
         "cdn_url": cdn_url,
+        "thumb_url": final_thumb_url,
         "bytes": filesize,
         "error": None,
     }
@@ -306,4 +384,110 @@ def sync_curated_collection(
         "total_bytes": total_bytes,
         "errors": errors[:50],  # cap returned errors
         "elapsed_seconds": elapsed,
+    }
+
+
+def _sync_thumbnail_task(item: Dict[str, Any], curated_dir: Path, s3_bucket: str) -> Dict[str, Any]:
+    """Worker task to generate and upload a thumbnail for one wallpaper."""
+    w_id = item["id"]
+    category = item.get("category", "")
+    curated_fn = item.get("curated_filename") or item.get("filename") or ""
+    if not curated_fn:
+        return {"id": w_id, "success": False, "error": "Missing filename"}
+
+    local_path = curated_dir / category / curated_fn
+    if not local_path.is_file():
+        fallback_path = curated_dir.parent / "Wallpapers" / category / item.get("filename", "")
+        if fallback_path.is_file():
+            local_path = fallback_path
+        else:
+            return {"id": w_id, "success": False, "error": f"File not found: {local_path}"}
+
+    success, thumb_url, err = upload_thumbnail(local_path, category, curated_fn, bucket=s3_bucket)
+    if not success:
+        return {"id": w_id, "success": False, "error": err}
+
+    update_wallpaper_s3_thumb(w_id, thumb_url)
+    return {"id": w_id, "success": True, "thumb_url": thumb_url}
+
+
+def sync_thumbnails(
+    workers: int = S3_MAX_WORKERS,
+    force_all: bool = False,
+    progress_callback: Optional[Callable[[int, int, str], None]] = None,
+    curated_dir: Path = CURATED_DIR,
+    db_path: Path = DB_PATH,
+) -> Dict[str, Any]:
+    """Generate and upload WebP thumbnails for curated wallpapers missing them.
+
+    Returns summary dict matching sync_curated_collection format.
+    """
+    if not is_s3_configured():
+        raise ValueError("S3/B2 credentials are not configured in environment/.env")
+
+    start_time = time.time()
+    curated_dir = Path(curated_dir)
+
+    with db_session(db_path) as conn:
+        cursor = conn.cursor()
+        if force_all:
+            cursor.execute(
+                """
+                SELECT id, category, curated_filename, filename
+                FROM wallpapers
+                WHERE is_curated = 1 AND s3_key IS NOT NULL AND s3_key != ''
+                ORDER BY id ASC
+                """
+            )
+        else:
+            cursor.execute(
+                """
+                SELECT id, category, curated_filename, filename
+                FROM wallpapers
+                WHERE is_curated = 1 AND s3_key IS NOT NULL AND s3_key != ''
+                  AND (s3_thumb_url IS NULL OR s3_thumb_url = '' OR s3_thumb_url = s3_url)
+                ORDER BY id ASC
+                """
+            )
+        candidates = [dict(r) for r in cursor.fetchall()]
+
+    total = len(candidates)
+    if total == 0:
+        return {
+            "total": 0, "uploaded": 0, "skipped": 0, "failed": 0,
+            "total_bytes": 0, "errors": [],
+            "elapsed_seconds": round(time.time() - start_time, 2),
+        }
+
+    uploaded = 0
+    failed = 0
+    errors: List[str] = []
+
+    get_s3_client()
+
+    with ThreadPoolExecutor(max_workers=max(1, workers)) as executor:
+        futures = {
+            executor.submit(_sync_thumbnail_task, item, curated_dir, S3_BUCKET): item
+            for item in candidates
+        }
+        completed = 0
+        for fut in as_completed(futures):
+            completed += 1
+            res = fut.result()
+            if res["success"]:
+                uploaded += 1
+            else:
+                failed += 1
+                errors.append(f"ID #{res['id']}: {res['error']}")
+            if progress_callback:
+                progress_callback(completed, total, f"Thumbnails {uploaded}/{total}")
+
+    return {
+        "total": total,
+        "uploaded": uploaded,
+        "skipped": total - (uploaded + failed),
+        "failed": failed,
+        "total_bytes": 0,
+        "errors": errors[:50],
+        "elapsed_seconds": round(time.time() - start_time, 2),
     }

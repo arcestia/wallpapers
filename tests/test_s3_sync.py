@@ -21,6 +21,14 @@ class TestS3KeyGeneration(unittest.TestCase):
         key = curate_s3.generate_s3_key("/Anime/", "/1.png")
         self.assertEqual(key, "images/wallpapers/Anime/1.png")
 
+    def test_generate_s3_thumb_key(self):
+        key = curate_s3.generate_s3_thumb_key("Anime", "1.png")
+        self.assertEqual(key, "images/thumbs/Anime/1.webp")
+
+    def test_generate_s3_thumb_key_strips_slashes(self):
+        key = curate_s3.generate_s3_thumb_key("/Anime/", "/1.png")
+        self.assertEqual(key, "images/thumbs/Anime/1.webp")
+
     def test_generate_cdn_url(self):
         url = curate_s3.generate_cdn_url("images/wallpapers/Anime/1.png")
         self.assertEqual(url, "https://cdn.skiddle.id/images/wallpapers/Anime/1.png")

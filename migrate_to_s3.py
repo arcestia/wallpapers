@@ -115,6 +115,11 @@ def main():
         action="store_true",
         help="Verify remote file sizes match local after upload",
     )
+    parser.add_argument(
+        "--thumbs-only",
+        action="store_true",
+        help="Generate and upload WebP thumbnails only (skip full-res upload)",
+    )
     args = parser.parse_args()
 
     # Initialize DB schema
@@ -125,6 +130,17 @@ def main():
         print("ERROR: S3/B2 is not configured. Please set the following in .env:")
         print("  CURATE_S3_ENDPOINT_URL, CURATE_S3_KEY_ID, CURATE_S3_APP_KEY, CURATE_S3_BUCKET")
         sys.exit(1)
+
+    if args.thumbs_only:
+        from curate_s3 import sync_thumbnails
+        print("Generating and uploading WebP thumbnails...")
+        result = sync_thumbnails(workers=args.workers, force_all=args.force)
+        print(f"Thumbnail sync complete: {result['uploaded']} uploaded, {result['failed']} failed ({result['elapsed_seconds']}s)")
+        if result['errors']:
+            print("\nERRORS:")
+            for e in result['errors'][:10]:
+                print(f"  {e}")
+        sys.exit(1 if result['failed'] > 0 else 0)
 
     if args.dry_run:
         candidates = get_migration_candidates(force_all=args.force)
