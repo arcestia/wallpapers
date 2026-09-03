@@ -2175,7 +2175,7 @@ def handle_git_push(data: dict) -> dict:
     try:
         count = update_readme_stats()
         subprocess.run(
-            ["git", "add", "Curated/", "README.md", ".github/README.md"],
+            ["git", "add", "README.md", ".github/README.md"],
             cwd=str(BASE_DIR),
             check=True,
         )
