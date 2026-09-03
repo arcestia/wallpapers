@@ -1,0 +1,189 @@
+{
+  "settings": {
+    "delay_seconds": 1.0,
+    "purity": "100",
+    "min_resolution": "2560x1440",
+    "default_limit_per_target": 10
+  },
+  "targets": [
+    {
+      "name": "Top Monthly Wallpapers",
+      "query": null,
+      "sorting": "toplist",
+      "top_range": "1M",
+      "categories": "111",
+      "limit": 10
+    },
+    {
+      "name": "Cyberpunk & Neon Cities",
+      "query": "cyberpunk",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Cyberpunk",
+      "limit": 10
+    },
+    {
+      "name": "Anime Art & Scenery",
+      "query": "anime",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "categories": "010",
+      "category_hint": "Anime",
+      "type_hint": "NON-AI",
+      "limit": 10
+    },
+    {
+      "name": "Fantasy Worlds & Castles",
+      "query": "fantasy",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Fantasy",
+      "limit": 10
+    },
+    {
+      "name": "Gaming & Concept Art",
+      "query": "video games",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Gaming",
+      "type_hint": "NON-AI",
+      "limit": 10
+    },
+    {
+      "name": "Landscape & Mountains",
+      "query": "landscape",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Landscape",
+      "limit": 10
+    },
+    {
+      "name": "Nature & Forests",
+      "query": "forest nature",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Nature",
+      "limit": 10
+    },
+    {
+      "name": "Deep Space & Nebula",
+      "query": "space galaxy nebula",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Space",
+      "limit": 10
+    },
+    {
+      "name": "Animals & Wildlife",
+      "query": "wildlife animal cat wolf",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Animals",
+      "limit": 10
+    },
+    {
+      "name": "Comics & Superheroes",
+      "query": "comics marvel dc batman",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Comics",
+      "limit": 10
+    },
+    {
+      "name": "Supercars & Automotive",
+      "query": "supercar sports car",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Cars",
+      "limit": 10
+    },
+    {
+      "name": "Modern Architecture & Bridges",
+      "query": "architecture bridge",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Architecture",
+      "limit": 10
+    },
+    {
+      "name": "City Skylines & Night Views",
+      "query": "city skyline night",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "City",
+      "limit": 10
+    },
+    {
+      "name": "Ocean & Beaches",
+      "query": "ocean beach sea",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Ocean",
+      "limit": 10
+    },
+    {
+      "name": "Sci-Fi & Futuristic",
+      "query": "sci-fi futuristic spaceship",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Sci-Fi",
+      "limit": 10
+    },
+    {
+      "name": "Abstract & Minimalist",
+      "query": "abstract minimalist",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Abstract",
+      "limit": 10
+    },
+    {
+      "name": "Pixel Art & 8-Bit",
+      "query": "pixel art 8-bit retro",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Pixel Art",
+      "limit": 10
+    },
+    {
+      "name": "Music & Instruments",
+      "query": "music guitar headphones",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Music",
+      "limit": 10
+    },
+    {
+      "name": "Military & Aviation",
+      "query": "military fighter jet aircraft",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Military",
+      "limit": 10
+    },
+    {
+      "name": "Horror & Dark Art",
+      "query": "dark horror skull gothic",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Horror",
+      "limit": 10
+    },
+    {
+      "name": "Sports & Action",
+      "query": "sports skateboard surfing",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Sports",
+      "limit": 10
+    },
+    {
+      "name": "Digital Art & 3D Render",
+      "query": "digital art 3d render artstation",
+      "sorting": "toplist",
+      "top_range": "1y",
+      "category_hint": "Digital Art",
+      "limit": 10
+    }
+  ]
+}

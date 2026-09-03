@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <title>Wallpaper Curator Pro</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <span class="brand-icon">🖼️</span> Wallpaper <span>Curator Pro</span>
+    </div>
+
+    <div class="stats-pill" onclick="openStatsModal()" title="Click to view detailed analytics">
+      <div class="stat-item">Curated: <span class="stat-curated" id="stat-curated">0</span></div>
+      <div class="stat-item">Pending: <span class="stat-pending" id="stat-pending">0</span></div>
+      <div class="stat-item">Rejected: <span class="stat-rejected" id="stat-rejected">0</span></div>
+      <div class="stat-item">Total: <span class="stat-total" id="stat-total">0</span></div>
+    </div>
+
+    <!-- Live Header Task Pill -->
+    <div class="top-task-pill" id="top-task-pill" onclick="toggleHudLogs()">
+      <span class="hud-beacon"></span>
+      <span id="top-task-label">Ingesting 0/0...</span>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn-icon btn-ingest" onclick="openIngestModal()">📥 Ingest Studio</button>
+      <button class="btn-icon btn-classifier" onclick="openClassifierModal()">🤖 Auto-Classify</button>
+      <button class="btn-icon" onclick="openDuplicatesModal()" style="border-color: #f59e0b; color: #f59e0b;">🧹 Clean Duplicates</button>
+      <button class="btn-icon" onclick="openStatsModal()">📊 Stats</button>
+      <button class="btn-icon" onclick="openShortcutsModal()">⌨️ Hotkeys</button>
+
+      <div class="density-toggle" title="Thumbnail density">
+        <button class="density-btn" id="d-sm" onclick="setDensity('sm')">S</button>
+        <button class="density-btn active" id="d-md" onclick="setDensity('md')">M</button>
+        <button class="density-btn" id="d-lg" onclick="setDensity('lg')">L</button>
+      </div>
+
+      <select id="filter-status" onchange="loadWallpapers()">
+        <option value="uncurated" selected>Uncurated Only</option>
+        <option value="curated">Curated Wallpapers</option>
+        <option value="rejected">Rejected Wallpapers</option>
+        <option value="all">All Wallpapers (Everything)</option>
+      </select>
+
+      <button class="btn-publish" onclick="publishToCdn()">🚀 Publish to CDN</button>
+    </div>
+  </header>
+
+  <div class="workspace">
+    <!-- Category Sidebar -->
+    <aside>
+      <div class="sidebar-header">
+        <span>Categories & Filters</span>
+        <span id="cat-total-badge" class="badge-count">25</span>
+      </div>
+      <div class="cat-list" id="sidebar-categories">
+        <div class="cat-item active" onclick="selectCategory('All', this)">
+          <span>📁 All Categories</span>
+          <span class="badge-count" id="badge-all-count">0</span>
+        </div>
+        <div class="cat-item" onclick="quickFilterStatus('curated', this)">
+          <span>✨ Curated Collection</span>
+          <span class="badge-cur-count" id="badge-curated-sidebar">0</span>
+        </div>
+        <div class="cat-item" onclick="quickFilterStatus('rejected', this)">
+          <span>🚫 Rejected Wallpapers</span>
+          <span class="badge-rej-count" id="badge-rejected-sidebar">0</span>
+        </div>
+        <div style="height: 1px; background: var(--border); margin: 6px 4px;"></div>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main>
+      <!-- Background Task Banner (Active when downloading/classifying) -->
+      <div id="active-task-container" style="padding: 16px 24px 0 24px; display: none;">
+        <div class="task-banner">
+          <div class="task-banner-top">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span id="task-spinner">⏳</span>
+              <span id="task-name-label">Wallhaven Ingesting...</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span id="task-count-label" style="color: var(--accent); font-size: 0.8rem;">0 / 0</span>
+              <button onclick="cancelCurrentTask()" style="padding: 4px 10px; font-size: 0.75rem; background: var(--red); border: none; color: white;">Cancel Task</button>
+            </div>
+          </div>
+          <div class="task-bar-track">
+            <div class="task-bar-fill" id="task-bar-fill" style="width: 0%;"></div>
+          </div>
+          <div class="task-logs" id="task-logs-preview"></div>
+        </div>
+      </div>
+
+      <div class="sub-toolbar">
+        <div class="toolbar-left" style="flex-wrap: wrap; gap: 8px;">
+          <button onclick="toggleSelectAll()"><span id="select-all-text">Select All</span></button>
+          <span id="selection-counter" style="color: var(--accent); font-weight: 700; margin-right: 8px;">0 selected</span>
+
+          <!-- Aspect Ratio Filter Pills -->
+          <div style="display: flex; background: #07090e; border: 1px solid var(--border); border-radius: 20px; padding: 2px; gap: 2px;">
+            <button class="ratio-pill active" id="pill-ratio-all" onclick="setRatioFilter('all')">All</button>
+            <button class="ratio-pill" id="pill-ratio-16-9" onclick="setRatioFilter('16:9')">16:9 Standard</button>
+            <button class="ratio-pill" id="pill-ratio-21-9" onclick="setRatioFilter('21:9')">21:9 Ultrawide</button>
+            <button class="ratio-pill" id="pill-ratio-32-9" onclick="setRatioFilter('32:9')">32:9 Super</button>
+            <button class="ratio-pill" id="pill-ratio-9-16" onclick="setRatioFilter('9:16')">9:16 Mobile</button>
+          </div>
+
+          <!-- Min Resolution -->
+          <select id="filter-min-res" onchange="loadWallpapers()" style="padding: 4px 10px; font-size: 0.8rem;">
+            <option value="all" selected>All Res (≥2K)</option>
+            <option value="4k">≥ 4K UHD (3840×2160)</option>
+            <option value="5k">≥ 5K / 8K (5120+)</option>
+          </select>
+        </div>
+
+        <div class="toolbar-right" style="gap: 10px;">
+          <!-- Sort Dropdown -->
+          <select id="filter-sort" onchange="loadWallpapers()" style="padding: 5px 10px; font-size: 0.82rem; font-weight: 600;">
+            <option value="id_asc" selected>🔢 ID: Oldest First</option>
+            <option value="id_desc">🔢 ID: Newest First</option>
+            <option value="res_desc">📐 Resolution: Highest First</option>
+            <option value="res_asc">📐 Resolution: Lowest First</option>
+            <option value="size_desc">📦 Size: Largest First</option>
+            <option value="size_asc">📦 Size: Smallest First</option>
+            <option value="cat_asc">🔤 Category Name</option>
+          </select>
+
+          <div class="cmd-bar-trigger" onclick="openCommandBar()">
+            <span>🔍 Search / Jump...</span>
+            <kbd>⌘K</kbd>
+          </div>
+          <input type="text" id="search-input" placeholder="Search..." oninput="debounceSearch()" style="width: 140px;" />
+        </div>
+      </div>
+
+      <!-- Wallpaper Grid -->
+      <div class="grid-container" id="grid-view"></div>
+
+      <!-- Floating Batch Action Bar -->
+      <div class="batch-bar" id="batch-action-bar" style="display: none;">
+        <span id="batch-count-label" style="font-weight: 800; color: var(--text-bright);">0 Selected</span>
+        <button class="batch-btn batch-approve" onclick="batchAct('approve')">✓ Approve Selected</button>
+        <button class="batch-btn batch-reject" onclick="batchAct('reject')">✕ Reject Selected</button>
+        <button class="batch-btn batch-classify" onclick="batchClassifySelected()">🤖 Auto-Classify</button>
+        <button class="batch-btn batch-reset" onclick="batchAct('unapprove')">↩ Reset Status</button>
+        <select id="batch-move-cat" onchange="batchMove(this.value)" style="margin-left: 6px;">
+          <option value="">Move Category...</option>
+        </select>
+        <button class="batch-btn batch-cancel" onclick="clearSelection()">Cancel (Esc)</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Duplicates Cleaner Modal -->
+  <div class="modal-backdrop" id="duplicates-modal" onclick="closeModal('duplicates-modal', event)">
+    <div class="modal-card" style="max-width: 960px;" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title">🧹 Library Duplicate Cleaner</div>
+        <button class="modal-close" onclick="closeModal('duplicates-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #090d14; padding: 14px 18px; border-radius: 10px; border: 1px solid var(--border);">
+          <div>
+            <div style="font-weight: 800; color: var(--text-bright); margin-bottom: 2px;">Visual & Hash Duplicate Scanner</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Detects duplicate images by SHA-256 hash or identical dimensions & file size across all categories.</div>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-icon" onclick="scanDuplicates()" style="background: #f59e0b; border-color: #f59e0b; color: black; font-weight: 800;">🔍 Scan Duplicates</button>
+            <button class="batch-btn batch-reject" id="btn-purge-all-dups" onclick="purgeAllDuplicates()" style="display: none;">🗑️ Purge All Duplicates (0)</button>
+          </div>
+        </div>
+
+        <div id="duplicates-results-container" style="max-height: 480px; overflow-y: auto;">
+          <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+            Click "Scan Duplicates" to search your entire wallpaper archive for duplicate files.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Multi-Source Ingest Modal -->
+  <div class="modal-backdrop" id="ingest-modal" onclick="closeModal('ingest-modal', event)">
+    <div class="modal-card" style="max-width: 960px;" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title">📥 Ingest Wallpapers</div>
+        <button class="modal-close" onclick="closeModal('ingest-modal')">&times;</button>
+      </div>
+      <div class="tab-bar">
+        <button class="tab-btn active" id="tab-wh-search" onclick="switchIngestTab('wh-search')">🔍 Wallhaven Search</button>
+        <button class="tab-btn" id="tab-wh-ids" onclick="switchIngestTab('wh-ids')">🔗 Wallhaven IDs</button>
+        <button class="tab-btn" id="tab-deviantart" onclick="switchIngestTab('deviantart')">🎨 DeviantArt</button>
+        <button class="tab-btn" id="tab-web-urls" onclick="switchIngestTab('web-urls')">🌐 Web URLs</button>
+        <button class="tab-btn" id="tab-local-folder" onclick="switchIngestTab('local-folder')">📁 Local Folder</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Tab 1: Wallhaven Search -->
+        <div id="pane-wh-search" style="display: flex; flex-direction: column; gap: 16px;">
+          <div style="background: #090d14; padding: 14px 18px; border-radius: 10px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <div style="font-weight: 800; color: var(--text-bright); font-size: 0.95rem;">Wallhaven.cc Search</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">2K/4K/8K wallpaper search with ratio, purity, and sorting filters.</div>
+            </div>
+            <span id="wh-status-badge" style="background: #475569; color: #fff; font-size: 0.7rem; font-weight: 800; padding: 3px 10px; border-radius: 999px;">Checking...</span>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group" style="grid-column: span 2;">
+              <label>Search Query (Keywords, Anime, Game, Artist)</label>
+              <input type="text" id="wh-q" placeholder="e.g. cyberpunk, space nebula, zelda, minimal neon..." onkeydown="if(event.key==='Enter') searchWallhaven();" />
+            </div>
+            <div class="form-group">
+              <label>Sort Order</label>
+              <select id="wh-sort">
+                <option value="toplist" selected>Toplist (Highest Rated)</option>
+                <option value="hot">Hot</option>
+                <option value="views">Most Views</option>
+                <option value="random">Random</option>
+                <option value="date_added">Recently Added</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Top Range (for Toplist)</label>
+              <select id="wh-top-range">
+                <option value="1M" selected>Past Month</option>
+                <option value="3M">Past 3 Months</option>
+                <option value="6M">Past 6 Months</option>
+                <option value="1y">Past 1 Year</option>
+                <option value="1w">Past 1 Week</option>
+                <option value="1d">Past 24 Hours</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Content Categories</label>
+              <select id="wh-categories">
+                <option value="111" selected>All (General + Anime + People)</option>
+                <option value="100">General Only</option>
+                <option value="010">Anime Only</option>
+                <option value="001">People Only</option>
+                <option value="110">General + Anime</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Minimum Resolution</label>
+              <select id="wh-atleast">
+                <option value="2560x1440" selected>≥ 1440p / 2K (2560×1440)</option>
+                <option value="3840x2160">≥ 4K UHD (3840×2160)</option>
+                <option value="5120x2880">≥ 5K UHD (5120×2880)</option>
+                <option value="7680x4320">≥ 8K UHD (7680×4320)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Resolution & Aspect Ratio</label>
+              <select id="wh-ratio">
+                <option value="" selected>All Ratios (≥ 2K)</option>
+                <option value="16x9">16:9 (Standard 2K/4K)</option>
+                <option value="21x9">21:9 (Ultrawide)</option>
+                <option value="32x9">32:9 (Super Ultrawide)</option>
+                <option value="9x16">9:16 (Portrait / Mobile)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Purity Standard</label>
+              <select id="wh-purity">
+                <option value="100" selected>SFW (Clean Only)</option>
+                <option value="110">SFW + Sketchy</option>
+                <option value="111" disabled class="wh-nsfw-option">SFW + Sketchy + NSFW (API key required)</option>
+                <option value="001" disabled class="wh-nsfw-option">NSFW Only (API key required)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <button class="btn-publish" onclick="searchWallhaven()">🔍 Search Wallhaven</button>
+              <span id="wh-search-status" style="font-size: 0.82rem; color: var(--text-muted);"></span>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+              <label style="font-size: 0.8rem; color: var(--text-muted);">Quantity:</label>
+              <select id="wh-ingest-limit" style="width: 80px;">
+                <option value="8">8</option>
+                <option value="12">12</option>
+                <option value="16" selected>16</option>
+                <option value="24">24</option>
+                <option value="32">32</option>
+                <option value="48">48</option>
+              </select>
+              <label style="font-size: 0.8rem; color: var(--text-muted);">Category:</label>
+              <select id="wh-search-cat-hint" style="width: 140px;">
+                <option value="">Auto-Detect</option>
+              </select>
+              <button class="btn-icon" onclick="ingestAllFromSearch()" id="btn-wh-ingest-all" style="display: none; background: var(--green); border-color: var(--green); color: white;">📥 Ingest (0)</button>
+            </div>
+          </div>
+
+          <!-- Wallhaven Results Preview Grid -->
+          <div class="wh-grid" id="wh-results-grid">
+            <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted);">
+              Type a search query above and click "Search Wallhaven" to browse and ingest 2K+ wallpapers.
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Wallhaven Direct IDs -->
+        <div id="pane-wh-ids" style="display: none; flex-direction: column; gap: 16px;">
+          <div class="form-group">
+            <label>Wallhaven IDs or URLs (one per line)</label>
+            <textarea id="wh-ids-text" rows="6" placeholder="https://wallhaven.cc/w/1k7j9w&#10;whvn.cc/gwd5ee&#10;lyd8xl"></textarea>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="form-group" style="width: 200px;">
+              <label>Override Category</label>
+              <select id="wh-ids-cat-hint">
+                <option value="">Auto-Detect</option>
+              </select>
+            </div>
+            <button class="btn-publish" onclick="ingestWallhavenIds()">📥 Ingest Wallhaven IDs</button>
+          </div>
+        </div>
+
+        <!-- Tab 3: Web Image URLs -->
+        <div id="pane-web-urls" style="display: none; flex-direction: column; gap: 16px;">
+          <div class="form-group">
+            <label>Direct Image URLs (PNG, JPG, WEBP - one per line)</label>
+            <textarea id="web-urls-text" rows="6" placeholder="https://images.unsplash.com/photo-...&#10;https://i.redd.it/..."></textarea>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="form-group" style="width: 200px;">
+              <label>Assign Category</label>
+              <select id="web-urls-cat-hint">
+                <option value="">Auto-Detect</option>
+              </select>
+            </div>
+            <button class="btn-publish" onclick="ingestWebUrls()">📥 Download & Ingest URLs</button>
+          </div>
+        </div>
+
+        <!-- Tab 4: Local Folder -->
+        <div id="pane-local-folder" style="display: none; flex-direction: column; gap: 16px;">
+          <div class="form-group">
+            <label>Absolute Folder Path</label>
+            <input type="text" id="local-folder-path" placeholder="e.g. C:\Users\Downloads\Wallpapers" />
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; gap: 16px; align-items: center;">
+              <div class="form-group" style="width: 200px;">
+                <label>Assign Category</label>
+                <select id="local-folder-cat-hint">
+                  <option value="">Auto-Detect</option>
+                </select>
+              </div>
+              <label style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; cursor: pointer; margin-top: 14px;">
+                <input type="checkbox" id="local-folder-move" /> Move files (don't keep duplicate in folder)
+              </label>
+            </div>
+            <button class="btn-publish" onclick="ingestLocalFolder()">📁 Scan & Ingest Directory</button>
+          </div>
+        </div>
+        <!-- Tab 3: DeviantArt -->
+        <div id="pane-deviantart" style="display: none; flex-direction: column; gap: 16px;">
+          <div style="background: #090d14; padding: 14px 18px; border-radius: 10px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <div style="font-weight: 800; color: var(--text-bright); font-size: 0.95rem;">DeviantArt Browse</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Official OAuth2 API. Requires <code>DEVIANTART_CLIENT_ID</code> & <code>DEVIANTART_CLIENT_SECRET</code> in <code>.env</code>.</div>
+            </div>
+            <span id="deviantart-status-badge" style="background: #475569; color: #fff; font-size: 0.7rem; font-weight: 800; padding: 3px 10px; border-radius: 999px;">Checking...</span>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group" style="grid-column: span 2;">
+              <label>Search Query / Keywords</label>
+              <input type="text" id="deviantart-query" placeholder="e.g. cyberpunk city, fantasy landscape, anime portrait..." onkeydown="if(event.key==='Enter') previewDeviantArt();" />
+            </div>
+
+            <div class="form-group">
+              <label>Limit</label>
+              <select id="deviantart-limit">
+                <option value="6">6 items</option>
+                <option value="10" selected>10 items</option>
+                <option value="16">16 items</option>
+                <option value="24">24 items</option>
+                <option value="32">32 items</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="grid-column: span 2;">
+              <label>Assign Category (Override / Hint)</label>
+              <select id="deviantart-cat-hint">
+                <option value="">Auto-Detect</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <button class="btn-publish" onclick="previewDeviantArt()" style="background: #0284c7; color: white;">🔍 Preview Results</button>
+              <button class="btn-icon" id="btn-deviantart-ingest-previewed" onclick="ingestAllPreviewedDeviantArt()" style="display: none; background: var(--green); border-color: var(--green); color: white;">📥 Ingest Found (0)</button>
+              <label style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; cursor: pointer; color: var(--text-muted);">
+                <input type="checkbox" id="deviantart-mature" /> Allow Mature Content
+              </label>
+            </div>
+            <button class="btn-publish" onclick="runDeviantArtIngest()" style="background: var(--green); color: white;">✨ Ingest from DeviantArt</button>
+          </div>
+
+          <div id="deviantart-preview-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; min-height: 100px;">
+            <div style="grid-column: 1/-1; text-align: center; padding: 30px; color: var(--text-muted); font-size: 0.85rem;">
+              Enter keywords and click "Preview Results" to browse DeviantArt artworks before downloading.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Classifier Audit & Auto-Tag Modal -->
+  <div class="modal-backdrop" id="classifier-modal" onclick="closeModal('classifier-modal', event)">
+    <div class="modal-card" style="max-width: 960px;" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title">🤖 AI & Smart Classifier Review</div>
+        <button class="modal-close" onclick="closeModal('classifier-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #090d14; padding: 14px 18px; border-radius: 10px; border: 1px solid var(--border);">
+          <div>
+            <div style="font-weight: 800; color: var(--text-bright); margin-bottom: 2px;">Smart Library Scanner</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Scans existing wallpapers and suggests category corrections using EXIF, heuristic text, and visual signals.</div>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-icon btn-classifier" onclick="runClassifierAudit()">🔍 Scan Current View</button>
+            <button class="batch-btn batch-approve" id="btn-apply-all-audit" onclick="applyAllClassifierSuggestions()" style="display: none;">⚡ Apply All Suggestions (0)</button>
+          </div>
+        </div>
+
+        <div id="audit-results-container" style="max-height: 440px; overflow-y: auto;">
+          <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+            Click "Scan Current View" to evaluate category accuracy across your library.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox Focus Modal -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <div class="lightbox-top">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span id="lb-title" style="font-weight:800; color:var(--text-bright); font-size:1.1rem;">Anime #104</span>
+        <span class="pill" id="lb-curated-badge" style="display:none; background:var(--green); color:white;">✓ Curated</span>
+      </div>
+      <button class="btn-icon" onclick="closeLightbox()">✕ Close (Esc)</button>
+    </div>
+
+    <div class="lightbox-body">
+      <button class="lightbox-nav-btn lightbox-nav-prev" onclick="navLightbox(-1)">◀</button>
+      <div class="lightbox-img-area">
+        <img id="lb-image" src="" />
+      </div>
+      <button class="lightbox-nav-btn lightbox-nav-next" onclick="navLightbox(1)">▶</button>
+
+      <!-- Lightbox Inspector -->
+      <div class="lightbox-sidebar">
+        <h3 style="color:var(--text-bright); font-size:1rem; font-weight:800;">Wallpaper Details</h3>
+        <div class="meta-row"><span class="meta-key">Category</span><span class="meta-val" id="lb-cat">Anime</span></div>
+        <div class="meta-row"><span class="meta-key">Resolution</span><span class="meta-val" id="lb-res">3840 × 2160</span></div>
+        <div class="meta-row"><span class="meta-key">Aspect Ratio</span><span class="meta-val" id="lb-ratio">16:9</span></div>
+        <div class="meta-row"><span class="meta-key">Format</span><span class="meta-val" id="lb-fmt">PNG</span></div>
+        <div class="meta-row"><span class="meta-key">File Size</span><span class="meta-val" id="lb-size">4.2 MB</span></div>
+        <div class="meta-row"><span class="meta-key">Curated Name</span><span class="meta-val" id="lb-cur-name">-</span></div>
+
+        <!-- AI Classifier Recommendation Box -->
+        <div class="ai-box" id="lb-ai-box">
+          <div class="ai-box-title">
+            <span>🤖 AI Suggestion</span>
+            <span id="lb-ai-conf" style="color: var(--text-bright);">Confidence: 85%</span>
+          </div>
+          <div class="ai-sugg-row">
+            <span class="ai-sugg-badge" id="lb-ai-cat">Cyberpunk</span>
+            <button class="btn-quick" id="btn-lb-apply-sugg" onclick="applyLightboxSuggestion()" style="background: var(--purple); color: white; border: none;">⚡ Apply</button>
+          </div>
+          <div style="font-size: 0.75rem; color: var(--text-muted);" id="lb-ai-signals">Signals: Neon, synthwave keywords</div>
+        </div>
+
+        <div style="margin-top: 4px;">
+          <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:6px;">Change Category</label>
+          <select id="lb-change-cat" onchange="changeLightboxCategory(this.value)" style="width:100%;">
+            <option value="">Move Category...</option>
+          </select>
+        </div>
+
+        <div class="lightbox-actions">
+          <div style="display: flex; gap: 8px;">
+            <button class="btn-icon" onclick="downloadCurrentLightbox()" style="flex: 1; justify-content: center; background: #1e293b; color: white;">💾 Download 4K</button>
+            <button class="btn-icon" onclick="setWallpaperCurrentLightbox()" style="flex: 1; justify-content: center; background: #0284c7; border-color: #38bdf8; color: white;">🖼️ Set Desktop</button>
+          </div>
+          <button class="batch-btn batch-approve" onclick="actLightbox('approve')" style="justify-content:center; padding:12px;"><kbd>A</kbd> Approve & Curate</button>
+          <button class="batch-btn batch-reject" onclick="actLightbox('reject')" style="justify-content:center; padding:12px;"><kbd>R</kbd> Reject</button>
+          <button class="batch-btn batch-reset" onclick="actLightbox('unapprove')" style="justify-content:center; padding:10px;">↩ Reset Status</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statistics Dashboard Modal -->
+  <div class="modal-backdrop" id="stats-modal" onclick="closeModal('stats-modal', event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title">📊 Curation Analytics & Statistics</div>
+        <button class="modal-close" onclick="closeModal('stats-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-label">Curated Wallpapers</div>
+            <div class="metric-value" style="color: var(--green);" id="m-curated">0</div>
+            <div class="metric-sub" id="m-curated-pct">0% of collection</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Curated Library Size</div>
+            <div class="metric-value" style="color: var(--accent);" id="m-size">0 MB</div>
+            <div class="metric-sub" id="m-raw-size">Local: 0 GB</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Average Resolution</div>
+            <div class="metric-value" id="m-res">3840 × 2160</div>
+            <div class="metric-sub">≥ 2K standard verified</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Pending Review</div>
+            <div class="metric-value" style="color: var(--yellow);" id="m-pending">0</div>
+            <div class="metric-sub" id="m-total">Total: 0</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Rejected Wallpapers</div>
+            <div class="metric-value" style="color: var(--red);" id="m-rejected">0</div>
+            <div class="metric-sub">Marked excluded</div>
+          </div>
+        </div>
+
+        <div class="progress-section">
+          <div class="section-title">
+            <span>Category Curation Progress</span>
+            <span id="m-active-cats" style="color: var(--text-muted); font-size: 0.8rem;">0 active</span>
+          </div>
+          <div id="m-category-progress-list" style="display: flex; flex-direction: column; gap: 6px;"></div>
+        </div>
+
+        <div class="metrics-grid" style="grid-template-columns: 1fr 1fr;">
+          <div class="metric-box">
+            <div class="metric-label" style="margin-bottom: 8px;">Curated by Orientation</div>
+            <div class="pill-group" id="m-orientation-pills"></div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label" style="margin-bottom: 8px;">Curated by Format</div>
+            <div class="pill-group" id="m-format-pills"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Modal -->
+  <div class="modal-backdrop" id="shortcuts-modal" onclick="closeModal('shortcuts-modal', event)">
+    <div class="modal-card" style="max-width:540px;" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title">⌨️ Keyboard Shortcuts</div>
+        <button class="modal-close" onclick="closeModal('shortcuts-modal')">&times;</button>
+      </div>
+      <div class="modal-body" style="gap:12px;">
+        <div class="shortcut-row"><span>Open Command Bar Palette</span><kbd>⌘K</kbd> or <kbd>/</kbd></div>
+        <div class="shortcut-row"><span>Approve wallpaper (or selected)</span><kbd>A</kbd> or <kbd>Enter</kbd></div>
+        <div class="shortcut-row"><span>Reject wallpaper (or selected)</span><kbd>R</kbd> or <kbd>Del</kbd></div>
+        <div class="shortcut-row"><span>Select / Toggle card</span><kbd>Click</kbd> or <kbd>Space</kbd></div>
+        <div class="shortcut-row"><span>Range selection</span><kbd>Shift</kbd> + <kbd>Click</kbd></div>
+        <div class="shortcut-row"><span>Select all visible wallpapers</span><kbd>Ctrl</kbd> + <kbd>A</kbd></div>
+        <div class="shortcut-row"><span>Navigate Lightbox</span><kbd>←</kbd> / <kbd>→</kbd></div>
+        <div class="shortcut-row"><span>Deselect all / Close modal</span><kbd>Esc</kbd></div>
+        <div class="shortcut-row"><span>Show Shortcuts Legend</span><kbd>?</kbd></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Ingestion Progress HUD (Always on Top) -->
+  <div class="ingest-hud" id="ingest-hud">
+    <div class="hud-header">
+      <div class="hud-title-row">
+        <span class="hud-beacon" id="hud-beacon"></span>
+        <span id="hud-title">Ingestion in Progress...</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button onclick="toggleHudLogs()" style="padding: 3px 8px; font-size: 0.72rem; background: #1e293b; border: none; color: var(--text-bright); border-radius: 4px;">Logs</button>
+        <button onclick="cancelCurrentTask()" style="padding: 3px 8px; font-size: 0.72rem; background: var(--red); border: none; color: white; border-radius: 4px;">Cancel</button>
+      </div>
+    </div>
+
+    <div class="hud-item-label" id="hud-item-label">Preparing download...</div>
+
+    <div class="hud-progress-wrap">
+      <div class="hud-bar-track">
+        <div class="hud-bar-fill" id="hud-bar-fill" style="width: 0%;"></div>
+      </div>
+      <div class="hud-meta-row">
+        <div class="hud-stats-badges">
+          <span class="hud-badge-ok" id="hud-ok-count">✓ 0 Added</span>
+          <span class="hud-badge-dup" id="hud-dup-count">⚠️ 0 Dup</span>
+          <span class="hud-badge-fail" id="hud-fail-count">✕ 0 Err</span>
+        </div>
+        <span id="hud-pct-label" style="color: var(--accent);">0%</span>
+      </div>
+    </div>
+
+    <div class="hud-logs-drawer" id="hud-logs-drawer" style="display: none;"></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- Command Bar Palette -->
+  <div class="cmd-bar-backdrop" id="command-bar-modal" onclick="closeCommandBar(event)">
+    <div class="cmd-bar-card" onclick="event.stopPropagation()">
+      <div class="cmd-bar-input-wrap">
+        <span class="cmd-search-icon">⚡</span>
+        <input type="text" class="cmd-input" id="cmd-input" placeholder="Type a command, category, or tool... (Esc to close)" oninput="filterCommands()" onkeydown="handleCmdKey(event)" autocomplete="off" />
+        <kbd class="cmd-esc-hint">Esc</kbd>
+      </div>
+      <div class="cmd-list" id="cmd-list"></div>
+    </div>
+  </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
