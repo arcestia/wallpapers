@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skiddle Wallpapers — Curated 2K+ Collection</title>
+  <meta name="description" content="A hand-curated collection of 2K+ resolution wallpapers across 25+ categories.">
+  <style>
+    :root {
+      --bg: #07090e;
+      --surface: rgba(255,255,255,0.04);
+      --surface-hover: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.08);
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --radius: 12px;
+      --blur: 20px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+    }
+    /* ── Header ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(7,9,14,0.85);
+      backdrop-filter: blur(var(--blur));
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+    }
+    .header-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; }
+    .logo span { color: var(--accent); }
+    .stats-badge {
+      display: flex; gap: 12px; align-items: center;
+      padding: 6px 14px; border-radius: 999px;
+      background: var(--surface); border: 1px solid var(--border);
+      font-size: 0.82rem; color: var(--text-muted);
+    }
+    .stats-badge strong { color: var(--text); }
+    .search-box {
+      flex: 1; min-width: 200px;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 8px 14px;
+    }
+    .search-box input {
+      flex: 1; background: none; border: none; outline: none;
+      color: var(--text); font-size: 0.95rem;
+    }
+    .search-box input::placeholder { color: var(--text-muted); }
+    /* ── Filter Bar ── */
+    .filter-bar {
+      max-width: 1400px; margin: 0 auto;
+      padding: 12px 24px;
+      display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    }
+    .filter-group { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .filter-label { font-size: 0.78rem; color: var(--text-muted); margin-right: 4px; }
+    .chip {
+      padding: 5px 12px; border-radius: 999px; font-size: 0.8rem;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text-muted); cursor: pointer;
+      transition: all 0.15s; white-space: nowrap; user-select: none;
+    }
+    .chip:hover { background: var(--surface-hover); color: var(--text); }
+    .chip.active {
+      background: var(--accent); border-color: var(--accent);
+      color: #07090e; font-weight: 700;
+    }
+    /* ── Grid ── */
+    .grid {
+      max-width: 1400px; margin: 0 auto;
+      padding: 0 24px 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      position: relative; border-radius: var(--radius); overflow: hidden;
+      background: var(--surface); border: 1px solid var(--border);
+      cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+      aspect-ratio: 16/9;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(56,189,248,0.15);
+      border-color: rgba(56,189,248,0.3);
+    }
+    .card img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.3s;
+    }
+    .card:hover img { transform: scale(1.04); }
+    .card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(7,9,14,0.9) 0%, transparent 50%);
+      opacity: 0; transition: opacity 0.2s;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 14px;
+    }
+    .card:hover .card-overlay { opacity: 1; }
+    .card-cat { font-size: 0.75rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
+    .card-res { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+    .card-actions { display: flex; gap: 6px; margin-top: 8px; }
+    .btn-dl {
+      padding: 5px 12px; border-radius: 8px; font-size: 0.78rem; font-weight: 600;
+      background: var(--accent); color: #07090e; text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-dl:hover { background: var(--accent-hover); }
+    .btn-view {
+      padding: 5px 12px; border-radius: 8px; font-size: 0.78rem;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); text-decoration: none;
+    }
+    /* ── Lightbox ── */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(7,9,14,0.96); backdrop-filter: blur(var(--blur));
+      align-items: center; justify-content: center; flex-direction: column;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw; max-height: 80vh;
+      border-radius: var(--radius); box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+      object-fit: contain;
+    }
+    .lightbox-info {
+      margin-top: 16px; text-align: center;
+      display: flex; gap: 20px; align-items: center; flex-wrap: wrap; justify-content: center;
+    }
+    .lightbox-info .meta { color: var(--text-muted); font-size: 0.85rem; }
+    .lightbox-info .meta strong { color: var(--text); }
+    .lb-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); font-size: 1.5rem;
+      width: 48px; height: 48px; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .lb-nav:hover { background: var(--surface-hover); }
+    .lb-prev { left: 20px; }
+    .lb-next { right: 20px; }
+    .lb-close {
+      position: absolute; top: 20px; right: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); font-size: 1.2rem;
+      width: 40px; height: 40px; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    /* ── Loading / Empty ── */
+    .loading, .empty {
+      grid-column: 1 / -1; text-align: center;
+      padding: 80px 20px; color: var(--text-muted);
+    }
+    .loading { font-size: 1.1rem; }
+    .empty { font-size: 1rem; }
+    /* ── Scroll top ── */
+    .scroll-top {
+      position: fixed; bottom: 24px; right: 24px; z-index: 50;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--accent); color: #07090e; border: none;
+      font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    }
+    .scroll-top.visible { opacity: 1; pointer-events: auto; }
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px; text-align: center;
+      color: var(--text-muted); font-size: 0.82rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; padding: 0 12px 40px; }
+      .header-inner { gap: 10px; }
+      .filter-bar { padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">Skiddle <span>Wallpapers</span></div>
+    <div class="stats-badge" id="stats-badge">
+      <span>🖼️ <strong id="stat-count">—</strong> wallpapers</span>
+      <span>📦 <strong id="stat-size">—</strong></span>
+      <span>🏷️ <strong id="stat-cats">—</strong> categories</span>
+    </div>
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="search" placeholder="Search wallpapers..." oninput="render()">
+    </div>
+  </div>
+</header>
+
+<div class="filter-bar" id="filter-bar">
+  <div class="filter-group" id="category-filters">
+    <span class="filter-label">Category:</span>
+    <span class="chip active" data-cat="all" onclick="setCategory('all')">All</span>
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">Ratio:</span>
+    <span class="chip active" data-ratio="all" onclick="setRatio('all')">All</span>
+    <span class="chip" data-ratio="16:9" onclick="setRatio('16:9')">16:9</span>
+    <span class="chip" data-ratio="21:9" onclick="setRatio('21:9')">21:9</span>
+    <span class="chip" data-ratio="9:16" onclick="setRatio('9:16')">9:16</span>
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">Min Res:</span>
+    <span class="chip active" data-res="all" onclick="setMinRes('all')">All</span>
+    <span class="chip" data-res="2k" onclick="setMinRes('2k')">2K</span>
+    <span class="chip" data-res="4k" onclick="setMinRes('4k')">4K</span>
+    <span class="chip" data-res="8k" onclick="setMinRes('8k')">8K</span>
+  </div>
+</div>
+
+<div class="grid" id="grid">
+  <div class="loading">Loading wallpapers…</div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-nav lb-prev" onclick="navLightbox(-1, event)">‹</button>
+  <img id="lb-img" src="" alt="Wallpaper">
+  <div class="lightbox-info" id="lb-info"></div>
+  <button class="lb-nav lb-next" onclick="navLightbox(1, event)">›</button>
+</div>
+
+<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<footer>
+  <p>Curated 2K+ Wallpaper Collection · Hosted on <a href="https://www.backblaze.com/b2/cloud-storage.html" target="_blank" rel="noopener">Backblaze B2</a> · CDN by <a href="https://skiddle.id" target="_blank">skiddle.id</a></p>
+  <p style="margin-top:4px;opacity:0.6">All wallpapers are property of their respective artists. <a href="https://github.com/arcestia/wallpapers/issues">Request removal</a></p>
+</footer>
+
+<script>
+let allWallpapers = [];
+let filtered = [];
+let currentCat = 'all';
+let currentRatio = 'all';
+let currentMinRes = 'all';
+let searchQuery = '';
+let lightboxIdx = -1;
+
+// ── Init ──
+async function init() {
+  try {
+    const res = await fetch('wallpapers.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    allWallpapers = data.wallpapers || [];
+    updateStats(data);
+    buildCategoryFilters(data.categories || []);
+    applyFilters();
+  } catch(e) {
+    document.getElementById('grid').innerHTML = `<div class="empty">Failed to load wallpapers.json<br><small>${e.message}</small></div>`;
+  }
+}
+
+function updateStats(data) {
+  document.getElementById('stat-count').textContent = data.total_wallpapers ?? allWallpapers.length;
+  const bytes = data.total_size_bytes || 0;
+  document.getElementById('stat-size').textContent = bytes > 1e9 ? (bytes/1e9).toFixed(1)+' GB' : (bytes/1e6).toFixed(0)+' MB';
+  document.getElementById('stat-cats').textContent = (data.categories || []).length;
+}
+
+function buildCategoryFilters(categories) {
+  const container = document.getElementById('category-filters');
+  categories.forEach(cat => {
+    const el = document.createElement('span');
+    el.className = 'chip';
+    el.dataset.cat = cat;
+    el.textContent = cat;
+    el.onclick = () => setCategory(cat);
+    container.appendChild(el);
+  });
+}
+
+// ── Filters ──
+function setCategory(cat) {
+  currentCat = cat;
+  document.querySelectorAll('#category-filters .chip').forEach(c => c.classList.toggle('active', c.dataset.cat === cat));
+  applyFilters();
+}
+function setRatio(r) {
+  currentRatio = r;
+  document.querySelectorAll('[data-ratio]').forEach(c => c.classList.toggle('active', c.dataset.ratio === r));
+  applyFilters();
+}
+function setMinRes(r) {
+  currentMinRes = r;
+  document.querySelectorAll('[data-res]').forEach(c => c.classList.toggle('active', c.dataset.res === r));
+  applyFilters();
+}
+
+function applyFilters() {
+  searchQuery = document.getElementById('search').value.toLowerCase();
+  filtered = allWallpapers.filter(w => {
+    if (currentCat !== 'all' && w.category !== currentCat) return false;
+    if (currentRatio !== 'all' && w.aspect_ratio !== currentRatio) return false;
+    if (currentMinRes !== 'all') {
+      const px = (w.width||0) * (w.height||0);
+      if (currentMinRes === '2k' && px < 3686400) return false;
+      if (currentMinRes === '4k' && px < 8294400) return false;
+      if (currentMinRes === '8k' && px < 33177600) return false;
+    }
+    if (searchQuery && !(w.category||'').toLowerCase().includes(searchQuery) && !(w.filename||'').toLowerCase().includes(searchQuery)) return false;
+    return true;
+  });
+  render();
+}
+
+// ── Render ──
+function render() {
+  applyFiltersOnly();
+  const grid = document.getElementById('grid');
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty">No wallpapers match your filters.</div>';
+    return;
+  }
+  grid.innerHTML = filtered.map((w, i) => `
+    <div class="card" onclick="openLightbox(${i})">
+      <img src="${w.thumbnail_url}" alt="${w.category} #${w.id}" loading="lazy" decoding="async">
+      <div class="card-overlay">
+        <div class="card-cat">${w.category}</div>
+        <div class="card-res">${w.width}×${w.height} · ${w.format||''} · ${formatSize(w.filesize)}</div>
+        <div class="card-actions">
+          <a class="btn-dl" href="${w.download_url}" download="${w.category}_${w.filename}" onclick="event.stopPropagation()">💾 Download</a>
+          <a class="btn-view" href="${w.cdn_url}" target="_blank" onclick="event.stopPropagation()">🔍 Full</a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function applyFiltersOnly() {
+  searchQuery = document.getElementById('search').value.toLowerCase();
+  filtered = allWallpapers.filter(w => {
+    if (currentCat !== 'all' && w.category !== currentCat) return false;
+    if (currentRatio !== 'all' && w.aspect_ratio !== currentRatio) return false;
+    if (currentMinRes !== 'all') {
+      const px = (w.width||0) * (w.height||0);
+      if (currentMinRes === '2k' && px < 3686400) return false;
+      if (currentMinRes === '4k' && px < 8294400) return false;
+      if (currentMinRes === '8k' && px < 33177600) return false;
+    }
+    if (searchQuery && !(w.category||'').toLowerCase().includes(searchQuery) && !(w.filename||'').toLowerCase().includes(searchQuery)) return false;
+    return true;
+  });
+}
+
+function formatSize(b) {
+  if (!b) return '';
+  if (b > 1e6) return (b/1e6).toFixed(1)+' MB';
+  if (b > 1e3) return (b/1e3).toFixed(0)+' KB';
+  return b+' B';
+}
+
+// ── Lightbox ──
+function openLightbox(idx) {
+  lightboxIdx = idx;
+  renderLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function renderLightbox() {
+  const w = filtered[lightboxIdx];
+  if (!w) return;
+  document.getElementById('lb-img').src = w.cdn_url;
+  document.getElementById('lb-info').innerHTML = `
+    <span class="meta"><strong>${w.category}</strong> #${w.id}</span>
+    <span class="meta">${w.width}×${w.height} px</span>
+    <span class="meta">${w.format||''}</span>
+    <span class="meta">${formatSize(w.filesize)}</span>
+    <span class="meta">${w.aspect_ratio||''}</span>
+    <a class="btn-dl" href="${w.download_url}" download="${w.category}_${w.filename}">💾 Download Full Resolution</a>
+  `;
+}
+function closeLightbox(e) {
+  if (e && e.target !== document.getElementById('lightbox') && e.target !== document.getElementById('lb-img')) return;
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function navLightbox(delta, e) {
+  if (e) e.stopPropagation();
+  lightboxIdx = (lightboxIdx + delta + filtered.length) % filtered.length;
+  renderLightbox();
+}
+
+// ── Keyboard ──
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lightbox');
+  if (lb.classList.contains('open')) {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navLightbox(-1);
+    if (e.key === 'ArrowRight') navLightbox(1);
+  }
+});
+
+// ── Scroll top ──
+window.addEventListener('scroll', () => {
+  document.getElementById('scroll-top').classList.toggle('visible', window.scrollY > 600);
+});
+
+// ── Start ──
+init();
+</script>
+</body>
+</html>

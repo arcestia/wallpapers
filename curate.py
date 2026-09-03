@@ -969,6 +969,65 @@ Wallpapers are stored in high-resolution format directly under their respective 
     return total_count
 
 
+def export_gallery_json() -> int:
+    """Export curated wallpapers to docs/wallpapers.json for the public GitHub Pages gallery."""
+    docs_dir = BASE_DIR / "docs"
+    docs_dir.mkdir(exist_ok=True)
+
+    with db_session(DB_PATH) as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+            SELECT id, category, width, height, format, filesize,
+                   aspect_ratio, orientation, s3_url, curated_filename, source
+            FROM wallpapers
+            WHERE is_curated = 1 AND s3_url IS NOT NULL AND s3_url != ''
+            ORDER BY category ASC, curated_id ASC
+            """
+        )
+        rows = [dict(r) for r in cursor.fetchall()]
+
+    wallpapers = []
+    for r in rows:
+        w = {
+            "id": r["id"],
+            "category": r["category"],
+            "filename": r["curated_filename"],
+            "cdn_url": r["s3_url"],
+            "thumbnail_url": r["s3_url"],
+            "download_url": r["s3_url"],
+            "width": r["width"],
+            "height": r["height"],
+            "format": (r["format"] or "").upper(),
+            "filesize": r["filesize"],
+            "aspect_ratio": r["aspect_ratio"],
+            "orientation": r["orientation"],
+            "source": r["source"],
+        }
+        wallpapers.append(w)
+
+    total_size = sum(r["filesize"] or 0 for r in rows)
+    avg_w = int(sum(r["width"] or 0 for r in rows) / len(rows)) if rows else 0
+    avg_h = int(sum(r["height"] or 0 for r in rows) / len(rows)) if rows else 0
+
+    categories = sorted({w["category"] for w in wallpapers})
+
+    payload = {
+        "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "total_wallpapers": len(wallpapers),
+        "total_size_bytes": total_size,
+        "average_resolution": f"{avg_w}x{avg_h}",
+        "cdn_base": "https://cdn.skiddle.id",
+        "categories": categories,
+        "wallpapers": wallpapers,
+    }
+
+    json_path = docs_dir / "wallpapers.json"
+    json_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    return len(wallpapers)
+
+
 # ==============================================================================
 # CURATION OPERATIONS
 # ==============================================================================
@@ -2174,8 +2233,9 @@ def handle_git_push(data: dict) -> dict:
 
     try:
         count = update_readme_stats()
+        export_gallery_json()
         subprocess.run(
-            ["git", "add", "README.md", ".github/README.md"],
+            ["git", "add", "README.md", ".github/README.md", "docs/"],
             cwd=str(BASE_DIR),
             check=True,
         )
@@ -2254,15 +2314,17 @@ def run_cdn_publish_task(tm, force_all: bool = False) -> dict:
     else:
         tm.log("ℹ️ S3/B2 not configured (CURATE_S3_* missing); skipping CDN upload.")
 
-    # 2. Regenerate README stats
-    tm.log("📊 Regenerating README statistics...")
+    # 2. Regenerate README stats + gallery JSON
+    tm.log("📊 Regenerating README statistics & gallery JSON...")
     count = update_readme_stats()
+    gallery_count = export_gallery_json()
+    tm.log(f"🌐 Gallery JSON exported ({gallery_count} wallpapers)")
 
     # 3. Git: commit & push metadata only (Curated/ no longer added)
     tm.log("🚀 Committing metadata to git...")
     try:
         subprocess.run(
-            ["git", "add", "README.md", ".github/README.md"],
+            ["git", "add", "README.md", ".github/README.md", "docs/"],
             cwd=str(BASE_DIR), check=True,
         )
         status_res = subprocess.run(

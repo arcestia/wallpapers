@@ -194,5 +194,45 @@ class TestSchemaMigration(unittest.TestCase):
             shutil.rmtree(temp_dir, ignore_errors=True)
 
 
+class TestGalleryJsonExport(unittest.TestCase):
+    def test_export_gallery_json_writes_valid_json(self):
+        import curate
+        temp_dir = Path(tempfile.mkdtemp())
+        docs_dir = temp_dir / "docs"
+        db_path = temp_dir / "test.db"
+
+        init_db(db_path)
+        insert_wallpaper(
+            {
+                "filename": "1.png",
+                "type": "NON-AI",
+                "category": "Anime",
+                "width": 3840,
+                "height": 2160,
+                "format": "PNG",
+                "filesize": 1024000,
+                "sha256": "test-sha",
+                "is_curated": 1,
+                "curated_id": 1,
+                "curated_filename": "1.png",
+                "s3_url": "https://cdn.skiddle.id/images/wallpapers/Anime/1.png",
+            },
+            db_path=db_path,
+        )
+
+        with patch.object(curate, "BASE_DIR", temp_dir), \
+             patch.object(curate, "DB_PATH", db_path):
+            count = curate.export_gallery_json()
+
+        self.assertEqual(count, 1)
+        json_file = docs_dir / "wallpapers.json"
+        self.assertTrue(json_file.exists())
+        import json
+        data = json.loads(json_file.read_text(encoding="utf-8"))
+        self.assertEqual(data["total_wallpapers"], 1)
+        self.assertEqual(data["wallpapers"][0]["cdn_url"], "https://cdn.skiddle.id/images/wallpapers/Anime/1.png")
+        shutil.rmtree(temp_dir, ignore_errors=True)
+
+
 if __name__ == "__main__":
     unittest.main()
