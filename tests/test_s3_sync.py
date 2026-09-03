@@ -29,6 +29,12 @@ class TestS3KeyGeneration(unittest.TestCase):
         key = curate_s3.generate_s3_thumb_key("/Anime/", "/1.png")
         self.assertEqual(key, "images/thumbs/Anime/1.webp")
 
+    def test_generate_s3_key_with_ext(self):
+        key = curate_s3.generate_s3_key_with_ext("Anime", "1.png", "png")
+        self.assertEqual(key, "images/wallpapers/Anime/1.png")
+        key_jpg = curate_s3.generate_s3_key_with_ext("Anime", "1.png", "jpg")
+        self.assertEqual(key_jpg, "images/wallpapers/Anime/1.jpg")
+
     def test_generate_cdn_url(self):
         url = curate_s3.generate_cdn_url("images/wallpapers/Anime/1.png")
         self.assertEqual(url, "https://cdn.skiddle.id/images/wallpapers/Anime/1.png")
@@ -200,6 +206,58 @@ class TestSchemaMigration(unittest.TestCase):
             self.assertIn("s3_uploaded_at", cols)
         finally:
             shutil.rmtree(temp_dir, ignore_errors=True)
+
+
+class TestMultiFormatUpload(unittest.TestCase):
+    def setUp(self):
+        self.temp_dir = Path(tempfile.mkdtemp())
+        self.png_path = self.temp_dir / "1.png"
+        self.jpg_path = self.temp_dir / "2.jpg"
+        Image.new("RGB", (64, 64), (255, 0, 0)).save(self.png_path, format="PNG")
+        Image.new("RGB", (64, 64), (0, 255, 0)).save(self.jpg_path, format="JPEG")
+
+    def tearDown(self):
+        shutil.rmtree(self.temp_dir, ignore_errors=True)
+
+    def test_upload_multi_format_png_source_only_converts_jpg(self):
+        mock_client = MagicMock()
+        with patch.object(curate_s3, "S3_BUCKET", "test-bucket"), \
+             patch.object(curate_s3, "get_s3_client", return_value=mock_client):
+            res = curate_s3.upload_multi_format(
+                self.png_path,
+                "Anime",
+                "1.png",
+                original_url="https://cdn.skiddle.id/images/wallpapers/Anime/1.png",
+                bucket="test-bucket",
+                client=mock_client,
+            )
+        self.assertTrue(res["success"])
+        # Original PNG URL is reused verbatim
+        self.assertEqual(res["png_url"], "https://cdn.skiddle.id/images/wallpapers/Anime/1.png")
+        # JPG was generated and uploaded
+        self.assertEqual(res["jpg_url"], "https://cdn.skiddle.id/images/wallpapers/Anime/1.jpg")
+        # upload_fileobj should be called once (only for the generated JPG)
+        self.assertEqual(mock_client.upload_fileobj.call_count, 1)
+
+    def test_upload_multi_format_jpg_source_only_converts_png(self):
+        mock_client = MagicMock()
+        with patch.object(curate_s3, "S3_BUCKET", "test-bucket"), \
+             patch.object(curate_s3, "get_s3_client", return_value=mock_client):
+            res = curate_s3.upload_multi_format(
+                self.jpg_path,
+                "Anime",
+                "2.jpg",
+                original_url="https://cdn.skiddle.id/images/wallpapers/Anime/2.jpg",
+                bucket="test-bucket",
+                client=mock_client,
+            )
+        self.assertTrue(res["success"])
+        # Original JPG URL is reused verbatim
+        self.assertEqual(res["jpg_url"], "https://cdn.skiddle.id/images/wallpapers/Anime/2.jpg")
+        # PNG was generated and uploaded
+        self.assertEqual(res["png_url"], "https://cdn.skiddle.id/images/wallpapers/Anime/2.png")
+        # upload_fileobj should be called once (only for the generated PNG)
+        self.assertEqual(mock_client.upload_fileobj.call_count, 1)
 
 
 class TestGalleryJsonExport(unittest.TestCase):

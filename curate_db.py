@@ -82,6 +82,8 @@ EXPECTED_COLUMNS = {
     "s3_key": "TEXT",
     "s3_url": "TEXT",
     "s3_thumb_url": "TEXT",
+    "s3_png_url": "TEXT",
+    "s3_jpg_url": "TEXT",
     "s3_uploaded_at": "TIMESTAMP",
 }
 
@@ -294,29 +296,56 @@ def update_wallpaper_s3(
     s3_key: str,
     s3_url: str,
     s3_thumb_url: Optional[str] = None,
+    s3_png_url: Optional[str] = None,
+    s3_jpg_url: Optional[str] = None,
     db_path: Path = DB_PATH,
 ) -> bool:
-    """Record S3 object key, CDN URL, and optional CDN thumbnail URL on a wallpaper row."""
+    """Record S3 object key, CDN URLs, and optional format-specific URLs on a wallpaper row."""
     with db_session(db_path) as conn:
         cursor = conn.cursor()
+        fields = ["s3_key = ?", "s3_url = ?", "s3_uploaded_at = CURRENT_TIMESTAMP"]
+        params: List[Any] = [s3_key, s3_url]
         if s3_thumb_url:
-            cursor.execute(
-                """
-                UPDATE wallpapers
-                SET s3_key = ?, s3_url = ?, s3_thumb_url = ?, s3_uploaded_at = CURRENT_TIMESTAMP
-                WHERE id = ?
-                """,
-                (s3_key, s3_url, s3_thumb_url, wallpaper_id),
-            )
-        else:
-            cursor.execute(
-                """
-                UPDATE wallpapers
-                SET s3_key = ?, s3_url = ?, s3_uploaded_at = CURRENT_TIMESTAMP
-                WHERE id = ?
-                """,
-                (s3_key, s3_url, wallpaper_id),
-            )
+            fields.append("s3_thumb_url = ?")
+            params.append(s3_thumb_url)
+        if s3_png_url:
+            fields.append("s3_png_url = ?")
+            params.append(s3_png_url)
+        if s3_jpg_url:
+            fields.append("s3_jpg_url = ?")
+            params.append(s3_jpg_url)
+        params.append(wallpaper_id)
+        cursor.execute(
+            f"UPDATE wallpapers SET {', '.join(fields)} WHERE id = ?",
+            params,
+        )
+        return cursor.rowcount > 0
+
+
+def update_wallpaper_s3_formats(
+    wallpaper_id: int,
+    s3_png_url: Optional[str] = None,
+    s3_jpg_url: Optional[str] = None,
+    db_path: Path = DB_PATH,
+) -> bool:
+    """Record format-specific CDN URLs for a wallpaper."""
+    with db_session(db_path) as conn:
+        cursor = conn.cursor()
+        fields = []
+        params: List[Any] = []
+        if s3_png_url:
+            fields.append("s3_png_url = ?")
+            params.append(s3_png_url)
+        if s3_jpg_url:
+            fields.append("s3_jpg_url = ?")
+            params.append(s3_jpg_url)
+        if not fields:
+            return False
+        params.append(wallpaper_id)
+        cursor.execute(
+            f"UPDATE wallpapers SET {', '.join(fields)} WHERE id = ?",
+            params,
+        )
         return cursor.rowcount > 0
 
 

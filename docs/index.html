@@ -343,7 +343,8 @@ function render() {
         <div class="card-cat">${w.category}</div>
         <div class="card-res">${w.width}×${w.height} · ${w.format||''} · ${formatSize(w.filesize)}</div>
         <div class="card-actions">
-          <a class="btn-dl" href="${w.download_url}" download="${w.category}_${w.filename}" onclick="event.stopPropagation()">💾 Download</a>
+          <a class="btn-dl" href="${w.png_url}" download="${w.category}_${w.id}.png" title="Download full size PNG" onclick="event.stopPropagation()">💾 PNG</a>
+          <a class="btn-dl" href="${w.jpg_url}" download="${w.category}_${w.id}.jpg" title="Download full size JPG" onclick="event.stopPropagation()">💾 JPG</a>
           <a class="btn-view" href="${w.cdn_url}" target="_blank" onclick="event.stopPropagation()">🔍 Full</a>
         </div>
       </div>
@@ -391,7 +392,10 @@ function renderLightbox() {
     <span class="meta">${w.format||''}</span>
     <span class="meta">${formatSize(w.filesize)}</span>
     <span class="meta">${w.aspect_ratio||''}</span>
-    <a class="btn-dl" href="${w.download_url}" download="${w.category}_${w.filename}">💾 Download Full Resolution</a>
+    <div style="display:flex;gap:8px;">
+      <a class="btn-dl" href="${w.png_url}" download="${w.category}_${w.id}.png">💾 Download PNG (Lossless)</a>
+      <a class="btn-dl" href="${w.jpg_url}" download="${w.category}_${w.id}.jpg">💾 Download JPG (Optimized)</a>
+    </div>
   `;
 }
 function closeLightbox(e) {

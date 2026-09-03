@@ -120,6 +120,11 @@ def main():
         action="store_true",
         help="Generate and upload WebP thumbnails only (skip full-res upload)",
     )
+    parser.add_argument(
+        "--multi-format",
+        action="store_true",
+        help="Generate and upload PNG + JPG full-size variants only (skip original upload)",
+    )
     args = parser.parse_args()
 
     # Initialize DB schema
@@ -136,6 +141,17 @@ def main():
         print("Generating and uploading WebP thumbnails...")
         result = sync_thumbnails(workers=args.workers, force_all=args.force)
         print(f"Thumbnail sync complete: {result['uploaded']} uploaded, {result['failed']} failed ({result['elapsed_seconds']}s)")
+        if result['errors']:
+            print("\nERRORS:")
+            for e in result['errors'][:10]:
+                print(f"  {e}")
+        sys.exit(1 if result['failed'] > 0 else 0)
+
+    if args.multi_format:
+        from curate_s3 import sync_multi_formats
+        print("Generating and uploading PNG + JPG variants for all curated wallpapers...")
+        result = sync_multi_formats(workers=args.workers, force_all=args.force)
+        print(f"Multi-format sync complete: {result['uploaded']} uploaded, {result['failed']} failed ({result['elapsed_seconds']}s)")
         if result['errors']:
             print("\nERRORS:")
             for e in result['errors'][:10]:
