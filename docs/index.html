@@ -336,7 +336,9 @@ function render() {
   }
   grid.innerHTML = filtered.map((w, i) => `
     <div class="card" onclick="openLightbox(${i})">
-      <img src="${w.thumbnail_url}" alt="${w.category} #${w.id}" loading="lazy" decoding="async">
+      <img src="${w.thumbnail_url}" alt="${w.category} #${w.id}" loading="lazy" decoding="async"
+           width="640" height="360"
+           onerror="this.onerror=null; if(this.src!=='${w.cdn_url}') this.src='${w.cdn_url}';">
       <div class="card-overlay">
         <div class="card-cat">${w.category}</div>
         <div class="card-res">${w.width}×${w.height} · ${w.format||''} · ${formatSize(w.filesize)}</div>
