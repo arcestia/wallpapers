@@ -146,32 +146,42 @@ def init_db(db_path: Path = DB_PATH) -> None:
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_wallpapers_phash ON wallpapers(perceptual_hash)")
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_wallpapers_curated ON wallpapers(is_curated)")
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_wallpapers_s3_key ON wallpapers(s3_key)")
+        cursor.execute("CREATE UNIQUE INDEX IF NOT EXISTS idx_wallpapers_curated_unique ON wallpapers(category, curated_filename) WHERE is_curated = 1 AND curated_filename IS NOT NULL")
 
 
 def sync_curated_folder(curated_dir: Path, db_path: Path = DB_PATH) -> int:
-    """Sync existing files on disk in Curated/ with the database is_curated flags."""
+    """Sync Curated/ folder to DB by SHA-256 hash only.
+
+    Matches each file on disk to a wallpaper row by SHA-256.
+    If a file is found, the row is marked as curated with the correct
+    curated_filename. Rows without a matching file are left untouched.
+    """
+    import hashlib
     curated_dir = Path(curated_dir)
     if not curated_dir.exists():
         return 0
 
-    updated = 0
     with db_session(db_path) as conn:
         cursor = conn.cursor()
+
+        # Build hash -> row id map
+        cursor.execute("SELECT id, sha256 FROM wallpapers")
+        sha_to_row = {row["sha256"]: row["id"] for row in cursor.fetchall()}
+
+        updated = 0
         for cat_dir in curated_dir.iterdir():
             if cat_dir.is_dir():
                 for img in cat_dir.iterdir():
                     if img.is_file() and img.name != ".gitkeep":
-                        cursor.execute(
-                            """
-                            UPDATE wallpapers
-                            SET is_curated = 1, curated_filename = ?
-                            WHERE (category = ? AND curated_filename = ?)
-                               OR (category = ? AND filename = ?)
-                            """,
-                            (img.name, cat_dir.name, img.name, cat_dir.name, img.name),
-                        )
-                        updated += cursor.rowcount
-    return updated
+                        h = hashlib.sha256(img.read_bytes()).hexdigest()
+                        row_id = sha_to_row.get(h)
+                        if row_id is not None:
+                            cursor.execute(
+                                "UPDATE wallpapers SET is_curated = 1, curated_filename = ? WHERE id = ?",
+                                (img.name, row_id),
+                            )
+                            updated += cursor.rowcount
+        return updated
 
 
 # ==============================================================================

@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-04T15:11:10Z",
-  "total_wallpapers": 909,
-  "total_size_bytes": 4528827140,
-  "average_resolution": "4237x2505",
+  "generated_at": "2026-09-04T16:04:13Z",
+  "total_wallpapers": 904,
+  "total_size_bytes": 4506385408,
+  "average_resolution": "4241x2504",
   "cdn_base": "https://cdn.skiddle.id",
   "categories": [
     "Abstract",
@@ -1192,7 +1192,7 @@
     {
       "id": 2,
       "category": "Animals",
-      "filename": "2.jpg",
+      "filename": "1.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Animals/2.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Animals/2.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Animals/2.jpg",
@@ -1241,91 +1241,6 @@
       "source": "Legacy Import (Unsorted)"
     },
     {
-      "id": 27,
-      "category": "Anime",
-      "filename": "27.jpg",
-      "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/27.jpg",
-      "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/27.webp",
-      "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/27.jpg",
-      "png_url": "https://cdn.skiddle.id/images/wallpapers/Anime/27.png",
-      "jpg_url": "https://cdn.skiddle.id/images/wallpapers/Anime/27.jpg",
-      "width": 4096,
-      "height": 2304,
-      "format": "JPEG",
-      "filesize": 902488,
-      "aspect_ratio": "16:9",
-      "orientation": "Landscape",
-      "source": "Legacy Import (Anime)"
-    },
-    {
-      "id": 35,
-      "category": "Anime",
-      "filename": "35.jpg",
-      "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/35.jpg",
-      "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/35.webp",
-      "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/35.jpg",
-      "png_url": "https://cdn.skiddle.id/images/wallpapers/Anime/35.png",
-      "jpg_url": "https://cdn.skiddle.id/images/wallpapers/Anime/35.jpg",
-      "width": 3535,
-      "height": 1988,
-      "format": "JPEG",
-      "filesize": 2439039,
-      "aspect_ratio": "16:9",
-      "orientation": "Landscape",
-      "source": "Legacy Import (Anime)"
-    },
-    {
-      "id": 41,
-      "category": "Anime",
-      "filename": "41.jpg",
-      "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/41.jpg",
-      "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/41.webp",
-      "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/41.jpg",
-      "png_url": "https://cdn.skiddle.id/images/wallpapers/Anime/41.png",
-      "jpg_url": "https://cdn.skiddle.id/images/wallpapers/Anime/41.jpg",
-      "width": 2880,
-      "height": 5120,
-      "format": "JPEG",
-      "filesize": 3876737,
-      "aspect_ratio": "9:16",
-      "orientation": "Portrait",
-      "source": "Legacy Import (Anime)"
-    },
-    {
-      "id": 66,
-      "category": "Anime",
-      "filename": "66.png",
-      "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/66.png",
-      "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/66.webp",
-      "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/66.png",
-      "png_url": "https://cdn.skiddle.id/images/wallpapers/Anime/66.png",
-      "jpg_url": "https://cdn.skiddle.id/images/wallpapers/Anime/66.jpg",
-      "width": 3840,
-      "height": 2160,
-      "format": "PNG",
-      "filesize": 6903834,
-      "aspect_ratio": "16:9",
-      "orientation": "Landscape",
-      "source": "Legacy Import (Anime)"
-    },
-    {
-      "id": 67,
-      "category": "Anime",
-      "filename": "67.png",
-      "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/67.png",
-      "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/67.webp",
-      "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/67.png",
-      "png_url": "https://cdn.skiddle.id/images/wallpapers/Anime/67.png",
-      "jpg_url": "https://cdn.skiddle.id/images/wallpapers/Anime/67.jpg",
-      "width": 3840,
-      "height": 2160,
-      "format": "PNG",
-      "filesize": 8319634,
-      "aspect_ratio": "16:9",
-      "orientation": "Landscape",
-      "source": "Legacy Import (Anime)"
-    },
-    {
       "id": 1,
       "category": "Anime",
       "filename": "1.png",
@@ -1345,7 +1260,7 @@
     {
       "id": 4,
       "category": "Anime",
-      "filename": "4.png",
+      "filename": "2.png",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/4.png",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/4.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/4.png",
@@ -1379,7 +1294,7 @@
     {
       "id": 6,
       "category": "Anime",
-      "filename": "6.png",
+      "filename": "4.png",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/6.png",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/6.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/6.png",
@@ -1396,7 +1311,7 @@
     {
       "id": 7,
       "category": "Anime",
-      "filename": "7.png",
+      "filename": "5.png",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/7.png",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/7.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/7.png",
@@ -1430,7 +1345,7 @@
     {
       "id": 9,
       "category": "Anime",
-      "filename": "9.png",
+      "filename": "7.png",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/9.png",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/9.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/9.png",
@@ -1464,7 +1379,7 @@
     {
       "id": 11,
       "category": "Anime",
-      "filename": "11.png",
+      "filename": "9.png",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/11.png",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/11.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/11.png",
@@ -1515,7 +1430,7 @@
     {
       "id": 14,
       "category": "Anime",
-      "filename": "14.jpg",
+      "filename": "12.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/14.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/14.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/14.jpg",
@@ -1532,7 +1447,7 @@
     {
       "id": 15,
       "category": "Anime",
-      "filename": "15.jpg",
+      "filename": "13.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/15.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/15.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/15.jpg",
@@ -1566,7 +1481,7 @@
     {
       "id": 17,
       "category": "Anime",
-      "filename": "17.jpg",
+      "filename": "15.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/17.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/17.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/17.jpg",
@@ -1583,7 +1498,7 @@
     {
       "id": 18,
       "category": "Anime",
-      "filename": "18.png",
+      "filename": "16.png",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/18.png",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/18.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/18.png",
@@ -1600,7 +1515,7 @@
     {
       "id": 19,
       "category": "Anime",
-      "filename": "19.jpg",
+      "filename": "17.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/19.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/19.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/19.jpg",
@@ -1617,7 +1532,7 @@
     {
       "id": 20,
       "category": "Anime",
-      "filename": "20.png",
+      "filename": "18.png",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/20.png",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/20.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/20.png",
@@ -1634,7 +1549,7 @@
     {
       "id": 21,
       "category": "Anime",
-      "filename": "21.jpg",
+      "filename": "19.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/21.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/21.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/21.jpg",
@@ -1668,7 +1583,7 @@
     {
       "id": 23,
       "category": "Anime",
-      "filename": "23.jpg",
+      "filename": "21.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/23.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/23.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/23.jpg",
@@ -1685,7 +1600,7 @@
     {
       "id": 24,
       "category": "Anime",
-      "filename": "24.jpg",
+      "filename": "22.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/24.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/24.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/24.jpg",
@@ -1719,7 +1634,7 @@
     {
       "id": 26,
       "category": "Anime",
-      "filename": "26.jpg",
+      "filename": "24.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/26.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/26.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/26.jpg",
@@ -1736,7 +1651,7 @@
     {
       "id": 28,
       "category": "Anime",
-      "filename": "28.png",
+      "filename": "25.png",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/28.png",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/28.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/28.png",
@@ -1753,7 +1668,7 @@
     {
       "id": 29,
       "category": "Anime",
-      "filename": "29.jpg",
+      "filename": "26.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/29.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/29.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/29.jpg",
@@ -1770,7 +1685,7 @@
     {
       "id": 30,
       "category": "Anime",
-      "filename": "30.jpg",
+      "filename": "27.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/30.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/30.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/30.jpg",
@@ -1804,7 +1719,7 @@
     {
       "id": 32,
       "category": "Anime",
-      "filename": "32.jpg",
+      "filename": "29.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/32.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/32.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/32.jpg",
@@ -1821,7 +1736,7 @@
     {
       "id": 33,
       "category": "Anime",
-      "filename": "33.jpg",
+      "filename": "30.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/33.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/33.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/33.jpg",
@@ -1838,7 +1753,7 @@
     {
       "id": 34,
       "category": "Anime",
-      "filename": "34.jpg",
+      "filename": "31.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/34.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/34.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/34.jpg",
@@ -1855,7 +1770,7 @@
     {
       "id": 37,
       "category": "Anime",
-      "filename": "37.jpg",
+      "filename": "32.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/37.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/37.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/37.jpg",
@@ -1872,7 +1787,7 @@
     {
       "id": 38,
       "category": "Anime",
-      "filename": "38.jpg",
+      "filename": "33.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/38.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/38.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/38.jpg",
@@ -1889,7 +1804,7 @@
     {
       "id": 39,
       "category": "Anime",
-      "filename": "39.jpg",
+      "filename": "34.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/39.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/39.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/39.jpg",
@@ -1940,7 +1855,7 @@
     {
       "id": 43,
       "category": "Anime",
-      "filename": "43.jpg",
+      "filename": "37.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/43.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/43.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/43.jpg",
@@ -1974,7 +1889,7 @@
     {
       "id": 45,
       "category": "Anime",
-      "filename": "45.jpg",
+      "filename": "39.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/45.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/45.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/45.jpg",
@@ -2008,7 +1923,7 @@
     {
       "id": 47,
       "category": "Anime",
-      "filename": "47.jpg",
+      "filename": "41.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/47.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/47.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/47.jpg",
@@ -2025,7 +1940,7 @@
     {
       "id": 49,
       "category": "Anime",
-      "filename": "49.jpg",
+      "filename": "42.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/49.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/49.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/49.jpg",
@@ -2042,7 +1957,7 @@
     {
       "id": 50,
       "category": "Anime",
-      "filename": "50.jpg",
+      "filename": "43.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/50.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/50.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/50.jpg",
@@ -2076,7 +1991,7 @@
     {
       "id": 52,
       "category": "Anime",
-      "filename": "52.jpg",
+      "filename": "45.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/52.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/52.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/52.jpg",
@@ -2110,7 +2025,7 @@
     {
       "id": 54,
       "category": "Anime",
-      "filename": "54.jpg",
+      "filename": "47.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/54.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/54.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/54.jpg",
@@ -2127,7 +2042,7 @@
     {
       "id": 57,
       "category": "Anime",
-      "filename": "57.png",
+      "filename": "48.png",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/57.png",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/57.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/57.png",
@@ -2144,7 +2059,7 @@
     {
       "id": 59,
       "category": "Anime",
-      "filename": "59.jpg",
+      "filename": "49.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/59.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/59.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/59.jpg",
@@ -2161,7 +2076,7 @@
     {
       "id": 60,
       "category": "Anime",
-      "filename": "60.jpg",
+      "filename": "50.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/60.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/60.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/60.jpg",
@@ -2178,7 +2093,7 @@
     {
       "id": 61,
       "category": "Anime",
-      "filename": "61.jpg",
+      "filename": "51.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/61.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/61.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/61.jpg",
@@ -2212,7 +2127,7 @@
     {
       "id": 69,
       "category": "Anime",
-      "filename": "69.png",
+      "filename": "53.png",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/69.png",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/69.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/69.png",
@@ -2229,7 +2144,7 @@
     {
       "id": 65,
       "category": "Anime",
-      "filename": "65.jpg",
+      "filename": "54.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/65.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/65.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/65.jpg",
@@ -2246,7 +2161,7 @@
     {
       "id": 74,
       "category": "Anime",
-      "filename": "74.jpg",
+      "filename": "55.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/74.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/74.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/74.jpg",
@@ -2314,7 +2229,7 @@
     {
       "id": 78,
       "category": "Anime",
-      "filename": "78.jpg",
+      "filename": "59.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/78.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/78.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/78.jpg",
@@ -2331,7 +2246,7 @@
     {
       "id": 79,
       "category": "Anime",
-      "filename": "79.jpg",
+      "filename": "60.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/79.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/79.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/79.jpg",
@@ -2348,7 +2263,7 @@
     {
       "id": 80,
       "category": "Anime",
-      "filename": "80.jpg",
+      "filename": "61.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/80.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/80.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/80.jpg",
@@ -2382,7 +2297,7 @@
     {
       "id": 83,
       "category": "Anime",
-      "filename": "83.jpg",
+      "filename": "63.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/83.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/83.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/83.jpg",
@@ -2416,7 +2331,7 @@
     {
       "id": 85,
       "category": "Anime",
-      "filename": "85.jpg",
+      "filename": "65.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/85.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/85.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/85.jpg",
@@ -2501,7 +2416,7 @@
     {
       "id": 90,
       "category": "Anime",
-      "filename": "90.jpg",
+      "filename": "70.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/90.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/90.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/90.jpg",
@@ -2569,7 +2484,7 @@
     {
       "id": 94,
       "category": "Anime",
-      "filename": "94.jpg",
+      "filename": "74.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/94.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/94.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/94.jpg",
@@ -2586,7 +2501,7 @@
     {
       "id": 95,
       "category": "Anime",
-      "filename": "95.jpg",
+      "filename": "75.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/95.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/95.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/95.jpg",
@@ -2603,7 +2518,7 @@
     {
       "id": 114,
       "category": "Anime",
-      "filename": "114.jpg",
+      "filename": "76.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/114.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/114.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/114.jpg",
@@ -2620,7 +2535,7 @@
     {
       "id": 115,
       "category": "Anime",
-      "filename": "115.jpg",
+      "filename": "77.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/115.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/115.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/115.jpg",
@@ -2637,7 +2552,7 @@
     {
       "id": 116,
       "category": "Anime",
-      "filename": "116.jpg",
+      "filename": "78.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/116.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/116.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/116.jpg",
@@ -2654,7 +2569,7 @@
     {
       "id": 117,
       "category": "Anime",
-      "filename": "117.jpg",
+      "filename": "79.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/117.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/117.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/117.jpg",
@@ -2671,7 +2586,7 @@
     {
       "id": 118,
       "category": "Anime",
-      "filename": "118.jpg",
+      "filename": "80.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/118.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/118.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/118.jpg",
@@ -2688,7 +2603,7 @@
     {
       "id": 119,
       "category": "Anime",
-      "filename": "119.jpg",
+      "filename": "81.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/119.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/119.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/119.jpg",
@@ -2705,7 +2620,7 @@
     {
       "id": 121,
       "category": "Anime",
-      "filename": "121.jpg",
+      "filename": "82.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/121.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/121.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/121.jpg",
@@ -2722,7 +2637,7 @@
     {
       "id": 120,
       "category": "Anime",
-      "filename": "120.jpg",
+      "filename": "83.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/120.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/120.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/120.jpg",
@@ -2739,7 +2654,7 @@
     {
       "id": 122,
       "category": "Anime",
-      "filename": "122.jpg",
+      "filename": "84.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/122.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/122.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/122.jpg",
@@ -2756,7 +2671,7 @@
     {
       "id": 123,
       "category": "Anime",
-      "filename": "123.jpg",
+      "filename": "85.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/123.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/123.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/123.jpg",
@@ -2773,7 +2688,7 @@
     {
       "id": 124,
       "category": "Anime",
-      "filename": "124.jpg",
+      "filename": "86.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/124.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/124.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/124.jpg",
@@ -2790,7 +2705,7 @@
     {
       "id": 125,
       "category": "Anime",
-      "filename": "125.jpg",
+      "filename": "87.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/125.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/125.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/125.jpg",
@@ -2807,7 +2722,7 @@
     {
       "id": 126,
       "category": "Anime",
-      "filename": "126.jpg",
+      "filename": "88.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/126.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/126.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/126.jpg",
@@ -2824,7 +2739,7 @@
     {
       "id": 127,
       "category": "Anime",
-      "filename": "127.jpg",
+      "filename": "89.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/127.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/127.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/127.jpg",
@@ -2841,7 +2756,7 @@
     {
       "id": 132,
       "category": "Anime",
-      "filename": "132.jpg",
+      "filename": "90.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/132.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/132.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/132.jpg",
@@ -2858,7 +2773,7 @@
     {
       "id": 131,
       "category": "Anime",
-      "filename": "131.jpg",
+      "filename": "91.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/131.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/131.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/131.jpg",
@@ -2875,7 +2790,7 @@
     {
       "id": 130,
       "category": "Anime",
-      "filename": "130.jpg",
+      "filename": "92.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/130.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/130.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/130.jpg",
@@ -2892,7 +2807,7 @@
     {
       "id": 129,
       "category": "Anime",
-      "filename": "129.jpg",
+      "filename": "93.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/129.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/129.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/129.jpg",
@@ -2909,7 +2824,7 @@
     {
       "id": 128,
       "category": "Anime",
-      "filename": "128.jpg",
+      "filename": "94.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/128.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/128.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/128.jpg",
@@ -2926,7 +2841,7 @@
     {
       "id": 133,
       "category": "Anime",
-      "filename": "133.jpg",
+      "filename": "95.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/133.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/133.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/133.jpg",
@@ -2943,7 +2858,7 @@
     {
       "id": 134,
       "category": "Anime",
-      "filename": "134.jpg",
+      "filename": "96.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/134.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/134.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/134.jpg",
@@ -2960,7 +2875,7 @@
     {
       "id": 136,
       "category": "Anime",
-      "filename": "136.jpg",
+      "filename": "97.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/136.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/136.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/136.jpg",
@@ -2977,7 +2892,7 @@
     {
       "id": 135,
       "category": "Anime",
-      "filename": "135.jpg",
+      "filename": "98.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/135.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/135.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/135.jpg",
@@ -2994,7 +2909,7 @@
     {
       "id": 137,
       "category": "Anime",
-      "filename": "137.jpg",
+      "filename": "99.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/137.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/137.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/137.jpg",
@@ -3011,7 +2926,7 @@
     {
       "id": 138,
       "category": "Anime",
-      "filename": "138.jpg",
+      "filename": "100.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/138.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/138.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/138.jpg",
@@ -3028,7 +2943,7 @@
     {
       "id": 139,
       "category": "Anime",
-      "filename": "139.jpg",
+      "filename": "101.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/139.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/139.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/139.jpg",
@@ -3045,7 +2960,7 @@
     {
       "id": 140,
       "category": "Anime",
-      "filename": "140.jpg",
+      "filename": "102.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/140.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/140.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/140.jpg",
@@ -3062,7 +2977,7 @@
     {
       "id": 141,
       "category": "Anime",
-      "filename": "141.jpg",
+      "filename": "103.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/141.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/141.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/141.jpg",
@@ -3079,7 +2994,7 @@
     {
       "id": 142,
       "category": "Anime",
-      "filename": "142.jpg",
+      "filename": "104.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/142.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/142.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/142.jpg",
@@ -3096,7 +3011,7 @@
     {
       "id": 147,
       "category": "Anime",
-      "filename": "147.jpg",
+      "filename": "105.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/147.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/147.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/147.jpg",
@@ -3113,7 +3028,7 @@
     {
       "id": 146,
       "category": "Anime",
-      "filename": "146.jpg",
+      "filename": "106.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/146.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/146.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/146.jpg",
@@ -3130,7 +3045,7 @@
     {
       "id": 145,
       "category": "Anime",
-      "filename": "145.jpg",
+      "filename": "107.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/145.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/145.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/145.jpg",
@@ -3147,7 +3062,7 @@
     {
       "id": 144,
       "category": "Anime",
-      "filename": "144.jpg",
+      "filename": "108.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/144.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/144.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/144.jpg",
@@ -3164,7 +3079,7 @@
     {
       "id": 143,
       "category": "Anime",
-      "filename": "143.jpg",
+      "filename": "109.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/143.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/143.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/143.jpg",
@@ -3181,7 +3096,7 @@
     {
       "id": 148,
       "category": "Anime",
-      "filename": "148.jpg",
+      "filename": "110.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/148.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/148.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/148.jpg",
@@ -3198,7 +3113,7 @@
     {
       "id": 149,
       "category": "Anime",
-      "filename": "149.jpg",
+      "filename": "111.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/149.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/149.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/149.jpg",
@@ -3215,7 +3130,7 @@
     {
       "id": 150,
       "category": "Anime",
-      "filename": "150.jpg",
+      "filename": "112.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/150.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/150.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/150.jpg",
@@ -3232,7 +3147,7 @@
     {
       "id": 151,
       "category": "Anime",
-      "filename": "151.jpg",
+      "filename": "113.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/151.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/151.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/151.jpg",
@@ -3249,7 +3164,7 @@
     {
       "id": 152,
       "category": "Anime",
-      "filename": "152.jpg",
+      "filename": "114.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/152.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/152.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/152.jpg",
@@ -3266,7 +3181,7 @@
     {
       "id": 153,
       "category": "Anime",
-      "filename": "153.jpg",
+      "filename": "115.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/153.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/153.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/153.jpg",
@@ -3283,7 +3198,7 @@
     {
       "id": 154,
       "category": "Anime",
-      "filename": "154.jpg",
+      "filename": "116.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/154.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/154.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/154.jpg",
@@ -3300,7 +3215,7 @@
     {
       "id": 155,
       "category": "Anime",
-      "filename": "155.jpg",
+      "filename": "117.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/155.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/155.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/155.jpg",
@@ -3317,7 +3232,7 @@
     {
       "id": 156,
       "category": "Anime",
-      "filename": "156.jpg",
+      "filename": "118.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/156.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/156.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/156.jpg",
@@ -3334,7 +3249,7 @@
     {
       "id": 161,
       "category": "Anime",
-      "filename": "161.jpg",
+      "filename": "119.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/161.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/161.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/161.jpg",
@@ -3351,7 +3266,7 @@
     {
       "id": 160,
       "category": "Anime",
-      "filename": "160.jpg",
+      "filename": "120.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/160.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/160.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/160.jpg",
@@ -3368,7 +3283,7 @@
     {
       "id": 159,
       "category": "Anime",
-      "filename": "159.jpg",
+      "filename": "121.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/159.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/159.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/159.jpg",
@@ -3385,7 +3300,7 @@
     {
       "id": 158,
       "category": "Anime",
-      "filename": "158.jpg",
+      "filename": "122.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/158.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/158.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/158.jpg",
@@ -3402,7 +3317,7 @@
     {
       "id": 157,
       "category": "Anime",
-      "filename": "157.jpg",
+      "filename": "123.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/157.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/157.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/157.jpg",
@@ -3419,7 +3334,7 @@
     {
       "id": 162,
       "category": "Anime",
-      "filename": "162.jpg",
+      "filename": "124.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/162.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/162.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/162.jpg",
@@ -3436,7 +3351,7 @@
     {
       "id": 163,
       "category": "Anime",
-      "filename": "163.jpg",
+      "filename": "125.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/163.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/163.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/163.jpg",
@@ -3453,7 +3368,7 @@
     {
       "id": 164,
       "category": "Anime",
-      "filename": "164.jpg",
+      "filename": "126.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/164.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/164.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/164.jpg",
@@ -3470,7 +3385,7 @@
     {
       "id": 165,
       "category": "Anime",
-      "filename": "165.jpg",
+      "filename": "127.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/165.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/165.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/165.jpg",
@@ -3487,7 +3402,7 @@
     {
       "id": 166,
       "category": "Anime",
-      "filename": "166.jpg",
+      "filename": "128.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/166.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/166.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/166.jpg",
@@ -3504,7 +3419,7 @@
     {
       "id": 167,
       "category": "Anime",
-      "filename": "167.jpg",
+      "filename": "129.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/167.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/167.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/167.jpg",
@@ -3521,7 +3436,7 @@
     {
       "id": 168,
       "category": "Anime",
-      "filename": "168.jpg",
+      "filename": "130.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/168.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/168.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/168.jpg",
@@ -3538,7 +3453,7 @@
     {
       "id": 169,
       "category": "Anime",
-      "filename": "169.jpg",
+      "filename": "131.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/169.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/169.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/169.jpg",
@@ -3555,7 +3470,7 @@
     {
       "id": 170,
       "category": "Anime",
-      "filename": "170.jpg",
+      "filename": "132.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/170.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/170.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/170.jpg",
@@ -3572,7 +3487,7 @@
     {
       "id": 171,
       "category": "Anime",
-      "filename": "171.jpg",
+      "filename": "133.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/171.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/171.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/171.jpg",
@@ -3589,7 +3504,7 @@
     {
       "id": 176,
       "category": "Anime",
-      "filename": "176.jpg",
+      "filename": "134.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/176.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/176.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/176.jpg",
@@ -3606,7 +3521,7 @@
     {
       "id": 175,
       "category": "Anime",
-      "filename": "175.jpg",
+      "filename": "135.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/175.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/175.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/175.jpg",
@@ -3623,7 +3538,7 @@
     {
       "id": 174,
       "category": "Anime",
-      "filename": "174.jpg",
+      "filename": "136.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/174.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/174.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/174.jpg",
@@ -3640,7 +3555,7 @@
     {
       "id": 173,
       "category": "Anime",
-      "filename": "173.jpg",
+      "filename": "137.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/173.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/173.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/173.jpg",
@@ -3657,7 +3572,7 @@
     {
       "id": 172,
       "category": "Anime",
-      "filename": "172.jpg",
+      "filename": "138.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/172.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/172.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/172.jpg",
@@ -3674,7 +3589,7 @@
     {
       "id": 177,
       "category": "Anime",
-      "filename": "177.jpg",
+      "filename": "139.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/177.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/177.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/177.jpg",
@@ -3691,7 +3606,7 @@
     {
       "id": 178,
       "category": "Anime",
-      "filename": "178.jpg",
+      "filename": "140.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/178.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/178.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/178.jpg",
@@ -3708,7 +3623,7 @@
     {
       "id": 179,
       "category": "Anime",
-      "filename": "179.jpg",
+      "filename": "141.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/179.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/179.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/179.jpg",
@@ -3725,7 +3640,7 @@
     {
       "id": 180,
       "category": "Anime",
-      "filename": "180.jpg",
+      "filename": "142.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/180.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/180.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/180.jpg",
@@ -3742,7 +3657,7 @@
     {
       "id": 181,
       "category": "Anime",
-      "filename": "181.jpg",
+      "filename": "143.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/181.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/181.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/181.jpg",
@@ -3759,7 +3674,7 @@
     {
       "id": 182,
       "category": "Anime",
-      "filename": "182.jpg",
+      "filename": "144.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/182.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/182.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/182.jpg",
@@ -3776,7 +3691,7 @@
     {
       "id": 183,
       "category": "Anime",
-      "filename": "183.jpg",
+      "filename": "145.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/183.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/183.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/183.jpg",
@@ -3793,7 +3708,7 @@
     {
       "id": 184,
       "category": "Anime",
-      "filename": "184.jpg",
+      "filename": "146.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/184.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/184.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/184.jpg",
@@ -3810,7 +3725,7 @@
     {
       "id": 185,
       "category": "Anime",
-      "filename": "185.jpg",
+      "filename": "147.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/185.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/185.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/185.jpg",
@@ -3827,7 +3742,7 @@
     {
       "id": 186,
       "category": "Anime",
-      "filename": "186.jpg",
+      "filename": "148.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/186.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/186.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/186.jpg",
@@ -3844,7 +3759,7 @@
     {
       "id": 191,
       "category": "Anime",
-      "filename": "191.jpg",
+      "filename": "149.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/191.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/191.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/191.jpg",
@@ -3861,7 +3776,7 @@
     {
       "id": 190,
       "category": "Anime",
-      "filename": "190.jpg",
+      "filename": "150.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/190.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/190.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/190.jpg",
@@ -3878,7 +3793,7 @@
     {
       "id": 189,
       "category": "Anime",
-      "filename": "189.jpg",
+      "filename": "151.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/189.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/189.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/189.jpg",
@@ -3895,7 +3810,7 @@
     {
       "id": 188,
       "category": "Anime",
-      "filename": "188.jpg",
+      "filename": "152.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/188.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/188.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/188.jpg",
@@ -3912,7 +3827,7 @@
     {
       "id": 187,
       "category": "Anime",
-      "filename": "187.jpg",
+      "filename": "153.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/187.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/187.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/187.jpg",
@@ -3929,7 +3844,7 @@
     {
       "id": 192,
       "category": "Anime",
-      "filename": "192.jpg",
+      "filename": "154.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/192.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/192.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/192.jpg",
@@ -3946,7 +3861,7 @@
     {
       "id": 193,
       "category": "Anime",
-      "filename": "193.jpg",
+      "filename": "155.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/193.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/193.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/193.jpg",
@@ -3963,7 +3878,7 @@
     {
       "id": 194,
       "category": "Anime",
-      "filename": "194.jpg",
+      "filename": "156.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/194.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/194.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/194.jpg",
@@ -3980,7 +3895,7 @@
     {
       "id": 195,
       "category": "Anime",
-      "filename": "195.jpg",
+      "filename": "157.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/195.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/195.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/195.jpg",
@@ -3997,7 +3912,7 @@
     {
       "id": 196,
       "category": "Anime",
-      "filename": "196.jpg",
+      "filename": "158.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/196.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/196.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/196.jpg",
@@ -4014,7 +3929,7 @@
     {
       "id": 197,
       "category": "Anime",
-      "filename": "197.jpg",
+      "filename": "159.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/197.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/197.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/197.jpg",
@@ -4133,7 +4048,7 @@
     {
       "id": 204,
       "category": "Anime",
-      "filename": "204.jpg",
+      "filename": "166.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/204.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/204.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/204.jpg",
@@ -4167,7 +4082,7 @@
     {
       "id": 206,
       "category": "Anime",
-      "filename": "206.jpg",
+      "filename": "168.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/206.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/206.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/206.jpg",
@@ -4184,7 +4099,7 @@
     {
       "id": 211,
       "category": "Anime",
-      "filename": "211.jpg",
+      "filename": "169.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/211.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/211.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/211.jpg",
@@ -4201,7 +4116,7 @@
     {
       "id": 210,
       "category": "Anime",
-      "filename": "210.jpg",
+      "filename": "170.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/210.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/210.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/210.jpg",
@@ -4235,7 +4150,7 @@
     {
       "id": 208,
       "category": "Anime",
-      "filename": "208.jpg",
+      "filename": "172.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/208.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/208.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/208.jpg",
@@ -4252,7 +4167,7 @@
     {
       "id": 207,
       "category": "Anime",
-      "filename": "207.jpg",
+      "filename": "173.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/207.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/207.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/207.jpg",
@@ -4269,7 +4184,7 @@
     {
       "id": 212,
       "category": "Anime",
-      "filename": "212.jpg",
+      "filename": "174.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/212.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/212.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/212.jpg",
@@ -4286,7 +4201,7 @@
     {
       "id": 213,
       "category": "Anime",
-      "filename": "213.jpg",
+      "filename": "175.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/213.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/213.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/213.jpg",
@@ -4303,7 +4218,7 @@
     {
       "id": 214,
       "category": "Anime",
-      "filename": "214.jpg",
+      "filename": "176.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/214.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/214.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/214.jpg",
@@ -4320,7 +4235,7 @@
     {
       "id": 215,
       "category": "Anime",
-      "filename": "215.jpg",
+      "filename": "177.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/215.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/215.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/215.jpg",
@@ -4371,7 +4286,7 @@
     {
       "id": 226,
       "category": "Anime",
-      "filename": "226.jpg",
+      "filename": "180.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/226.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/226.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/226.jpg",
@@ -4422,7 +4337,7 @@
     {
       "id": 229,
       "category": "Anime",
-      "filename": "229.jpg",
+      "filename": "183.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/229.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/229.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/229.jpg",
@@ -4490,7 +4405,7 @@
     {
       "id": 222,
       "category": "Anime",
-      "filename": "222.jpg",
+      "filename": "187.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/222.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/222.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/222.jpg",
@@ -4507,7 +4422,7 @@
     {
       "id": 223,
       "category": "Anime",
-      "filename": "223.jpg",
+      "filename": "188.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/223.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/223.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/223.jpg",
@@ -4524,7 +4439,7 @@
     {
       "id": 218,
       "category": "Anime",
-      "filename": "218.jpg",
+      "filename": "189.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/218.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/218.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/218.jpg",
@@ -4762,7 +4677,7 @@
     {
       "id": 58,
       "category": "Anime",
-      "filename": "58.png",
+      "filename": "203.png",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/58.png",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/58.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/58.png",
@@ -4779,7 +4694,7 @@
     {
       "id": 63,
       "category": "Anime",
-      "filename": "63.jpg",
+      "filename": "204.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/63.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/63.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/63.jpg",
@@ -4847,7 +4762,7 @@
     {
       "id": 81,
       "category": "Anime",
-      "filename": "81.jpg",
+      "filename": "208.jpg",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Anime/81.jpg",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Anime/81.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/Anime/81.jpg",
@@ -7754,7 +7669,7 @@
     {
       "id": 3,
       "category": "City",
-      "filename": "3.png",
+      "filename": "1.png",
       "cdn_url": "https://cdn.skiddle.id/images/wallpapers/City/3.png",
       "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/City/3.webp",
       "download_url": "https://cdn.skiddle.id/images/wallpapers/City/3.png",

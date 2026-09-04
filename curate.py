@@ -1369,12 +1369,42 @@ def curate_single(wallpaper_id, action, new_category=None):
             if ext == ".jpeg":
                 ext = ".jpg"
 
-            if existing_curated_fn and (CURATED_DIR / current_cat / existing_curated_fn).exists():
-                curated_fn = existing_curated_fn
-                curated_id = row["curated_id"] or (int(Path(curated_fn).stem) if Path(curated_fn).stem.isdigit() else 1)
-            else:
+            curated_fn = None
+            curated_id = None
+
+            # Reuse existing curated file only if it hashes to THIS wallpaper's sha256
+            if existing_curated_fn:
+                existing_path = CURATED_DIR / current_cat / existing_curated_fn
+                if existing_path.exists():
+                    try:
+                        import hashlib as _hashlib
+                        existing_hash = _hashlib.sha256(existing_path.read_bytes()).hexdigest()
+                        if existing_hash == row["sha256"]:
+                            curated_fn = existing_curated_fn
+                            curated_id = row["curated_id"] or (
+                                int(Path(curated_fn).stem) if Path(curated_fn).stem.isdigit() else 1
+                            )
+                        else:
+                            # Stale pointer to another wallpaper's file — clear it
+                            existing_curated_fn = None
+                    except (OSError, ValueError):
+                        existing_curated_fn = None
+
+            if curated_fn is None:
+                # Ensure the new filename is not claimed by another row
                 curated_id = get_next_curated_id(current_cat)
                 curated_fn = f"{curated_id}{ext}"
+                cursor.execute(
+                    "SELECT COUNT(*) AS n FROM wallpapers WHERE id != ? AND category = ? AND curated_filename = ?",
+                    (wallpaper_id, current_cat, curated_fn),
+                )
+                while cursor.fetchone()["n"] > 0 or (CURATED_DIR / current_cat / curated_fn).exists():
+                    curated_id = get_next_curated_id(current_cat)
+                    curated_fn = f"{curated_id}{ext}"
+                    cursor.execute(
+                        "SELECT COUNT(*) AS n FROM wallpapers WHERE id != ? AND category = ? AND curated_filename = ?",
+                        (wallpaper_id, current_cat, curated_fn),
+                    )
 
             curated_target = CURATED_DIR / current_cat / curated_fn
             curated_target.parent.mkdir(parents=True, exist_ok=True)
@@ -1470,12 +1500,40 @@ def curate_batch(ids: list, action: str, new_category=None):
                 if ext == ".jpeg":
                     ext = ".jpg"
 
-                if existing_curated_fn and (CURATED_DIR / current_cat / existing_curated_fn).exists():
-                    curated_fn = existing_curated_fn
-                    curated_id = row["curated_id"] or (int(Path(curated_fn).stem) if Path(curated_fn).stem.isdigit() else 1)
-                else:
+                curated_fn = None
+                curated_id = None
+
+                # Reuse existing curated file only if it hashes to THIS wallpaper's sha256
+                if existing_curated_fn:
+                    existing_path = CURATED_DIR / current_cat / existing_curated_fn
+                    if existing_path.exists():
+                        try:
+                            import hashlib as _hashlib
+                            existing_hash = _hashlib.sha256(existing_path.read_bytes()).hexdigest()
+                            if existing_hash == row["sha256"]:
+                                curated_fn = existing_curated_fn
+                                curated_id = row["curated_id"] or (
+                                    int(Path(curated_fn).stem) if Path(curated_fn).stem.isdigit() else 1
+                                )
+                            else:
+                                existing_curated_fn = None
+                        except (OSError, ValueError):
+                            existing_curated_fn = None
+
+                if curated_fn is None:
                     curated_id = get_next_curated_id(current_cat)
                     curated_fn = f"{curated_id}{ext}"
+                    cursor.execute(
+                        "SELECT COUNT(*) AS n FROM wallpapers WHERE id != ? AND category = ? AND curated_filename = ?",
+                        (w_id, current_cat, curated_fn),
+                    )
+                    while cursor.fetchone()["n"] > 0 or (CURATED_DIR / current_cat / curated_fn).exists():
+                        curated_id = get_next_curated_id(current_cat)
+                        curated_fn = f"{curated_id}{ext}"
+                        cursor.execute(
+                            "SELECT COUNT(*) AS n FROM wallpapers WHERE id != ? AND category = ? AND curated_filename = ?",
+                            (w_id, current_cat, curated_fn),
+                        )
 
                 curated_target = CURATED_DIR / current_cat / curated_fn
                 curated_target.parent.mkdir(parents=True, exist_ok=True)
