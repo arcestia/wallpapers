@@ -1291,14 +1291,8 @@ let wallpapers = [];
     }
 
     async function publishToCdn() {
-      showToast('☁️ Publishing curated wallpapers to CDN & syncing README...');
-      const res = await fetch('/api/publish-cdn', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}) });
-      const data = await res.json();
-      if (data.success && data.task_id) {
-        showToast(`🚀 CDN Publish started (Task #${data.task_id})`);
-      } else {
-        showToast(`❌ Publish error: ${data.error || 'Failed to start'}`);
-      }
+      showToast('☁️ Starting Publish to CDN & Git Sync...');
+      await startTaskPoll('/api/publish-cdn', {});
     }
 
     function debounceSearch() {

@@ -138,9 +138,21 @@ def main():
 
     if args.thumbs_only:
         from curate_s3 import sync_thumbnails
-        print("Generating and uploading WebP thumbnails...")
-        result = sync_thumbnails(workers=args.workers, force_all=args.force)
-        print(f"Thumbnail sync complete: {result['uploaded']} uploaded, {result['failed']} failed ({result['elapsed_seconds']}s)")
+        print(f"Generating and uploading WebP thumbnails (workers={args.workers})...\n")
+        start_time = time.time()
+
+        def _thumb_prog(done, total, msg):
+            pct = (done / total * 100) if total > 0 else 100
+            bar_len = 35
+            filled = int(bar_len * pct / 100)
+            bar = "█" * filled + "-" * (bar_len - filled)
+            el = time.time() - start_time
+            rate = done / el if el > 0 else 0
+            eta = (total - done) / rate if rate > 0 else 0
+            print(f"\r[{bar}] {pct:5.1f}% | {done}/{total} thumbs | {rate:.1f}/s | ETA: {int(eta)}s", end="", flush=True)
+
+        result = sync_thumbnails(workers=args.workers, force_all=args.force, progress_callback=_thumb_prog)
+        print(f"\n\nThumbnail sync complete: {result['uploaded']} uploaded, {result['failed']} failed ({result['elapsed_seconds']}s)")
         if result['errors']:
             print("\nERRORS:")
             for e in result['errors'][:10]:
@@ -149,9 +161,21 @@ def main():
 
     if args.multi_format:
         from curate_s3 import sync_multi_formats
-        print("Generating and uploading PNG + JPG variants for all curated wallpapers...")
-        result = sync_multi_formats(workers=args.workers, force_all=args.force)
-        print(f"Multi-format sync complete: {result['uploaded']} uploaded, {result['failed']} failed ({result['elapsed_seconds']}s)")
+        print(f"Generating and uploading PNG + JPG variants (workers={args.workers})...\n")
+        start_time = time.time()
+
+        def _fmt_prog(done, total, msg):
+            pct = (done / total * 100) if total > 0 else 100
+            bar_len = 35
+            filled = int(bar_len * pct / 100)
+            bar = "█" * filled + "-" * (bar_len - filled)
+            el = time.time() - start_time
+            rate = done / el if el > 0 else 0
+            eta = (total - done) / rate if rate > 0 else 0
+            print(f"\r[{bar}] {pct:5.1f}% | {done}/{total} wallpapers | {rate:.1f}/s | ETA: {int(eta)}s", end="", flush=True)
+
+        result = sync_multi_formats(workers=args.workers, force_all=args.force, progress_callback=_fmt_prog)
+        print(f"\n\nMulti-format sync complete: {result['uploaded']} uploaded, {result['failed']} failed ({result['elapsed_seconds']}s)")
         if result['errors']:
             print("\nERRORS:")
             for e in result['errors'][:10]:
