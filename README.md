@@ -8,10 +8,10 @@ A hand-picked collection of **2K+ resolution** wallpapers organized across 25 cl
 
 ## 📊 Collection Statistics
 
-* **Total Curated Wallpapers**: 883
+* **Total Curated Wallpapers**: 897
 * **Total Multi-Format CDN Size**: ~11.83 GB (8.99 GB Lossless PNG + 2.84 GB Optimized JPEG)
-* **Original Local Size**: 4.07 GB
-* **Average Resolution**: 4229 × 2497 px
+* **Original Local Size**: 4.13 GB
+* **Average Resolution**: 4227 × 2498 px
 * **Formats Available**: Lossless PNG, High-Quality JPEG, Modern WebP
 * **Min Resolution Standard**: ≥ 3,686,400 pixels (2560 × 1440)
 
@@ -25,9 +25,9 @@ Wallpapers are stored in high-resolution format directly under their respective 
 Curated/
 ├── Abstract/ (68 wallpapers)
 ├── Animals/ (3 wallpapers)
-├── Anime/ (299 wallpapers)
+├── Anime/ (311 wallpapers)
 ├── Architecture/ (35 wallpapers)
-├── Art/ (2 wallpapers)
+├── Art/ (4 wallpapers)
 ├── Cars/ (21 wallpapers)
 ├── City/ (29 wallpapers)
 ├── Comics/ (2 wallpapers)
@@ -57,7 +57,7 @@ Curated/
 
 | Category | Wallpapers | Description / Examples |
 |---|:---:|---|
-| `Anime` | **299** | Anime, manga, waifu, chibi, Ghibli, vtubers, gacha games |
+| `Anime` | **311** | Anime, manga, waifu, chibi, Ghibli, vtubers, gacha games |
 | `Other` | **94** | Fallback for content that doesn't match any category |
 | `Abstract` | **68** | Gradients, geometric shapes, 3D renders, fluid art |
 | `Landscape` | **50** | Natural scenery, mountains, forests, beaches, deserts |
@@ -74,10 +74,10 @@ Curated/
 | `Digital Art` | **10** | High-resolution art |
 | `Music` | **7** | Musicians, instruments, concerts, album art |
 | `Military` | **7** | High-resolution art |
+| `Art` | **4** | Traditional paintings, illustration, concept art, digital painting |
 | `Animals` | **3** | Wildlife, cats, dogs, wolves, birds, marine life |
 | `Comics` | **2** | High-resolution art |
 | `People` | **2** | Portraits, fashion, crowds, human subjects |
-| `Art` | **2** | Traditional paintings, illustration, concept art, digital painting |
 | `Minimalism` | **1** | Clean, simple, negative space, flat design, OLED-friendly |
 | `Pixel Art` | **1** | Pixel art, 8-bit, 16-bit, retro game graphics |
 | `Miscellaneous` | **1** | Uncategorized or mixed content |
