@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-04T18:41:45Z",
-  "total_wallpapers": 904,
-  "total_size_bytes": 4506385408,
-  "average_resolution": "4241x2504",
+  "generated_at": "2026-09-04T18:43:21Z",
+  "total_wallpapers": 906,
+  "total_size_bytes": 4514320543,
+  "average_resolution": "4248x2503",
   "cdn_base": "https://cdn.skiddle.id",
   "categories": [
     "Abstract",
@@ -14584,6 +14584,40 @@
       "aspect_ratio": "1.42:1",
       "orientation": "Landscape",
       "source": "Wallhaven"
+    },
+    {
+      "id": 1272,
+      "category": "Other",
+      "filename": "97.jpg",
+      "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Other/97.jpg",
+      "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Other/97.webp",
+      "download_url": "https://cdn.skiddle.id/images/wallpapers/Other/97.jpg",
+      "png_url": "https://cdn.skiddle.id/images/wallpapers/Other/97.png",
+      "jpg_url": "https://cdn.skiddle.id/images/wallpapers/Other/97.jpg",
+      "width": 7680,
+      "height": 2160,
+      "format": "JPEG",
+      "filesize": 3629121,
+      "aspect_ratio": "32:9",
+      "orientation": "Ultrawide",
+      "source": "Local (Backgrounds)"
+    },
+    {
+      "id": 1275,
+      "category": "Other",
+      "filename": "98.jpg",
+      "cdn_url": "https://cdn.skiddle.id/images/wallpapers/Other/98.jpg",
+      "thumbnail_url": "https://cdn.skiddle.id/images/thumbs/Other/98.webp",
+      "download_url": "https://cdn.skiddle.id/images/wallpapers/Other/98.jpg",
+      "png_url": "https://cdn.skiddle.id/images/wallpapers/Other/98.png",
+      "jpg_url": "https://cdn.skiddle.id/images/wallpapers/Other/98.jpg",
+      "width": 7680,
+      "height": 2160,
+      "format": "JPEG",
+      "filesize": 4306014,
+      "aspect_ratio": "32:9",
+      "orientation": "Ultrawide",
+      "source": "Local (Backgrounds)"
     },
     {
       "id": 964,
