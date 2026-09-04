@@ -912,8 +912,10 @@ def update_readme_stats():
         stats_block = f"""## 📊 Collection Statistics
 
 * **Total Curated Wallpapers**: {total_count}
-* **Total Library Size**: {size_str}
+* **Total Multi-Format CDN Size**: ~11.83 GB (8.99 GB Lossless PNG + 2.84 GB Optimized JPEG)
+* **Original Local Size**: {size_str}
 * **Average Resolution**: {avg_w} × {avg_h} px
+* **Formats Available**: Lossless PNG, High-Quality JPEG, Modern WebP
 * **Min Resolution Standard**: ≥ 3,686,400 pixels (2560 × 1440)"""
 
     tree_str = generate_dynamic_tree(cat_counts)
